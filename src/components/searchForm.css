@@ -1,0 +1,7 @@
+.formStyle {
+    display: flex;
+    padding-top: 15px;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}

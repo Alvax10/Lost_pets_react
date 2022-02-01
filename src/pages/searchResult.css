@@ -1,0 +1,13 @@
+.divStyle {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.link {
+    text-decoration: none;
+}
+
+.results {
+    text-align: center;
+}

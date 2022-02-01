@@ -1,0 +1,19 @@
+.prod {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.prodTitle {
+    width: 200px;
+    text-align: inherit;
+}
+
+/* divStyle: {
+    width: 500,
+    display: "flex",
+    directionFlex: "column",
+    alignContent: "center",
+    alignItems: "center",
+} */
