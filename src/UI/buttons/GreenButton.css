@@ -1,0 +1,15 @@
+.root {
+    width: 200px;
+    height: 40px;
+    border: none;
+    display: flex;
+    cursor: pointer;
+    margin-top: 20px;
+    border-radius: 4px;
+    text-align: center;
+    align-self: center;
+    align-items: center;
+    justify-content: center;
+    justify-content: center;
+    background-color: #97EA9F;
+}

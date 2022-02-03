@@ -1,6 +1,6 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import { HeaderPage } from "../UI/header";
+import { HeaderPage } from "../Header/header";
 
 export function LayOut() {
 

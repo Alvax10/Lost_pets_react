@@ -1,82 +1,69 @@
-import { useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { atom, useRecoilValue, selector, useSetRecoilState } from "recoil";
+import { useState, useEffect } from "react";
+import { checkEmail, auth, mascotsClose } from "./lib/Login-api";
+import { atom, useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+export const API_BASE_URL = "https://desafio-final-dwf-m7.herokuapp.com";
+export const token = localStorage.getItem("auth_token");
 
-// ATOM DE QUERY
-export const queryState = atom({
-    key: "queryState",
-    default: null,
-});
-
-// ATOM DE ITEM
-export const itemIdState = atom({
+// ATOM DE _geoloc
+export const _geoloc = atom({
     key: "itemState",
+    default: {
+        lat: null,
+        lng: null
+    },
+});
+
+// ATOM DE TOGGLE
+export const toggle = atom({
+    key: "toggle",
+    default: false,
+});
+export const useToggle = () => useRecoilState(toggle);
+
+// ATOM DE LOCATION BEFORE
+export const locationBefore = atom({
+    key: "Location before",
+    default: "/home",
+});
+
+export const useLocationBefore = () => useRecoilState(locationBefore);
+
+// ATOM DE USER EMAIL
+export const userEmail = atom({
+    key: "userEmail",
+    default: "",
+});
+
+export const useUserEmail = () => useRecoilState(userEmail);
+
+// ATOM DE ARRAY MASCOTS CLOSE
+export const mascotsCloseFrom = atom({
+    key: "mascotsCloseFrom",
     default: null,
 });
 
-// SELECTOR DE QUERY
-const resultsState = selector({
-    key: "searchResults",
-    get: async ({ get }) => {
-        
-        const valorDeQuery = get(queryState);
-        if (valorDeQuery) {
-            const response = await fetch("https://api.mercadolibre.com/sites/MLA/search?q=" + valorDeQuery);
-            const data = await response.json();
-            console.log("Estos son los data reslts: ", data.results);
-            return data.results;
-
-        } else {
-            return [];
+export function useAuth() {
+    async function login(email, pass) {
+    try {
+        const { token } = await auth(email, pass);
+        localStorage.setItem("auth_token", token);
+        return true;
+    } catch (e) {
+        console.error("user o password incorrecto");
         }
-    },
-});
-
-// SELECTOR DE ITEM
-const IdState = selector({
-    key: "itemIdState",
-    get: async ({ get }) => {
-        
-        const valorDeId = get(itemIdState);
-        console.log("ESte es el valor de id: ", valorDeId);
-        if (valorDeId) {
-            const response = await fetch("https://api.mercadolibre.com/items/" + valorDeId);
-            const item = await response.json();
-            console.log("Esta es la data de item: ", item);
-            return item;
-
-        } else {
-            return [];
-        }
-    },
-});
-
-// MI CUSTOM HOOK
-export function useSearchResults() {
-    const params = useParams();
-    const setRecoilQuery = useSetRecoilState(queryState);
-    const results = useRecoilValue(resultsState);
-
-    useEffect(() => {
-        if (params.query) {
-            setRecoilQuery(params.query);
-        }
-    }, [params.query]);
-
-    return results;
+    }  
+    return { login };
 }
 
-// OTRO CUSTOM HOOK
-export function useItemResult() {
-    const params = useParams();
-    const setRecoilItemId = useSetRecoilState(itemIdState);
-    const item = useRecoilValue(IdState);
+// CUSTOM HOOK QUE RETORNA LAS MASCOTAS CERCA
+export function getMascotsCloseFrom() {
+    const loc = useRecoilValue(_geoloc);
+    const setMascotsClose = useSetRecoilState(mascotsCloseFrom);
+    const { lat } = loc;
+    const { lng } = loc;
 
-    useEffect(() => {
-        if (params.id) {
-            setRecoilItemId(params.id);
-        }
-    }, [params.id]);
+    const data = mascotsClose(lat, lng);
+    setMascotsClose(data);
 
-    return item;
+    return data;
 }

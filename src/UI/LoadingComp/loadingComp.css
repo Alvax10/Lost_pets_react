@@ -1,0 +1,26 @@
+.loading-notification {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.preloader {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    animation-name: girar;
+    animation-duration: 2s;
+    border: 10px solid #eee;
+    animation-iteration-count: infinite;
+    border-top: 10px solid rgb(0, 208, 255);
+}
+
+@keyframes girar {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

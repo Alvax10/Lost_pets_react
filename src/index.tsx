@@ -3,11 +3,12 @@ import ReactDOM from "react-dom";
 import { AppRoutes } from "./router/router";
 import { BrowserRouter } from "react-router-dom";
 import { RecoilRoot } from "recoil";
+import { LoadingComp } from "./UI/LoadingComp/loadingComp";
 
 function App() {
 
     return (
-        <Suspense fallback={<h3> Cargando... </h3>}>
+        <Suspense fallback={LoadingComp}>
             <RecoilRoot>
                 <BrowserRouter>
                     <AppRoutes />
