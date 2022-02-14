@@ -1,0 +1,101 @@
+/* CARDS STYLES */
+.card {
+    width: 335px;
+    height: 234px;
+    display: grid;
+    margin-top: 20px;
+    border-radius: 4px;
+    border: 2px solid #000;
+    grid-template-columns: 240px 90px;
+    grid-template-rows: 150px 80px;
+}
+
+.img {
+    width: 335px;
+    border: none;
+    max-height: 150px;
+    border-radius: 4px;
+}
+
+.petname {
+    font-size: 18px;
+    font-weight: 400;
+    padding-left: 10px;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+
+.info {
+    height: 25px;
+    margin-top: 50px;
+    padding-left: 10px;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    margin-top: 55px;
+}
+
+.button {
+    width: 300px;
+    height: 50px;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+    align-self: center;
+    border-radius: 4px;
+    text-align: center;
+    background-color: #FF9DF5;
+}
+
+.link {
+    grid-row-end: 3;
+    cursor: pointer;
+    color: #3E91DD;
+    margin-top: 35px;
+    grid-row-start: 2;
+    margin-right: 20px;
+    text-decoration: underline;
+}
+
+/* NOTE STYLES */
+.note {
+    top: 10%;
+    left: 30%;
+    padding: 10px;
+    height: 603px;
+    position: fixed;
+    border-radius: 4px;
+    background: #fefefe;
+}
+/* BOTON DE CIERRE */
+.close-button {
+    width: 30px;
+    height: 30px;
+    padding: 20px;
+    cursor: pointer;
+    margin-left: 77%;
+}
+/* EL TITULO DE LA NOTE */
+.note-title {
+    text-align: center;
+}
+/* EL FORMULARIO */
+.form {
+    display: flex;
+    margin-left: 10px; 
+    flex-direction: column;
+}
+
+.label {
+    align-self: center;
+}
+.message {
+    max-width: 308px;
+    max-height: 117px;
+    border-radius: 4px;
+    padding-left: 10px;;
+    border: 1px solid rgb(9, 9, 9);
+}
