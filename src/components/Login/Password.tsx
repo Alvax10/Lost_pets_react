@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { useUserEmail, useAuth } from "../../hooks";
+import React from "react";
+import { useUserData, useAuth } from "../../hooks";
 import { useNavigate } from "react-router-dom";
 import { InputLabel } from "../../UI/InputLabel/InputLabel";
 import { PinkButton } from "../../UI/buttons/PinkButton";
@@ -9,17 +9,17 @@ import { useLocationBefore } from "../../hooks";
 
 function Password() {
     const navigate = useNavigate();
-    const [userEmail, setUserEmail] = useUserEmail();
+    const userData = useUserData();
     const [locBefore, setLocBefore] = useLocationBefore();
     const { login } = useAuth();
 
     async function submitHandler(e) {
         e.preventDefault();
         const password = e.target.password.value;
-        const authRes = await login(userEmail, password);
+        const authRes = await login(userData["email"], password);
         if (authRes) {
-        console.log("login correcto");
-        navigate(locBefore);
+            console.log("login correcto");
+            navigate(locBefore);
         }
     }
 
@@ -29,7 +29,7 @@ function Password() {
 
     return (
         <form className={css.container} onSubmit={submitHandler}>
-            <TextInfo style={style} > Tu email es: {userEmail} </TextInfo>
+            <TextInfo style={style} > Tu email es: {userData["email"]} </TextInfo>
             <InputLabel placeholder="Tu contraseña..." label="ingresá tu password:" type="password" name="password"></InputLabel>
             <PinkButton> Ingresar </PinkButton>
         </form>

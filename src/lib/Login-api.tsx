@@ -33,15 +33,12 @@ export async function auth(email, password) {
     };
 }
 
-// OBTIENE LAS MASCOTAS QUE ESTÁN CERCA
-export async function mascotsClose(lat, lng) {
+// OBTIENE LA DATA DEL USER VINCULADA AL TOKEN
+export async function getMe() {
 
-    if (lat && lng) {
+    const res = await fetch(API_BASE_URL + "/me");
+    const userData = await res.json();
+    console.log(userData);
 
-        const res = await fetch(API_BASE_URL + "/mascots-close-from" + "?lat=" + lat + "&lng=" + lng);
-        const data = await res.json();
-        return data;
-    } else {
-        return "Falta la ubicación  !";
-    }
+    return userData;
 }

@@ -3,8 +3,9 @@ import logoHeader from "../../assets/logo-pata.png";
 import burgerMenu from "../../assets/burger-menu.png";
 import css from "./header.css";
 import { useNavigate } from "react-router-dom";
-import { MenuOpen } from "../MenuOpen/MenuOpen";
-import { useToggle } from "../../hooks";
+import { MenuOpen } from "./MenuOpen";
+
+export const useToggle = () => useState(false);
 
 export function HeaderPage() {
 
@@ -22,7 +23,7 @@ export function HeaderPage() {
         setToggle(false);
     }
 
-    return ( !toggle ?
+    return (!toggle ?
         <div>
             <header className={css.header}> 
                 <img className={css.logoMenu} onClick={goToHome} src={logoHeader} />

@@ -36,7 +36,7 @@ export function ExtractLocation() {
         <div className={css.container}>
             <CustomTitle> Mascotas perdidas cerca tuyo </CustomTitle>
             <TextInfo style={css["text-info"]}> Para ver las mascotas reportadas cerca tuyo necesitamos permiso para conocer tu ubicación. </TextInfo>
-            <PinkButton onClick={handlerLoc}> Dar mi ubicación </PinkButton>
+            <PinkButton className={css.button} onClick={handlerLoc}> Dar mi ubicación </PinkButton>
         </div>
     );
 }

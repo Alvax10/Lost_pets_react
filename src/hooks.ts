@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
-import { checkEmail, auth, mascotsClose } from "./lib/Login-api";
-import { atom, useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { auth, getMe } from "./lib/Login-api";
+import { atom, useRecoilState, selector, useRecoilValue } from "recoil";
 export const API_BASE_URL = "https://desafio-final-dwf-m7.herokuapp.com";
 export const token = localStorage.getItem("auth_token");
+// import { reportMascot } from "./lib/report-mascot-api";
+// import { sendEmailto } from "./lib/send-mail-api";
 
 // ATOM DE _geoloc
 export const _geoloc = atom({
@@ -13,12 +14,33 @@ export const _geoloc = atom({
     },
 });
 
-// ATOM DE TOGGLE
-export const toggle = atom({
-    key: "toggle",
-    default: false,
+// ATOM DE USERDATA
+// export const dataDelUsuario = atom({
+//     key: "dataDelUsuario",
+//     default: {
+//         id: null,
+//         email: null
+//     },
+// });
+
+// ATOM DE ImageDataURL
+export const ImageDataURL = atom({
+    key: "ImageDataURL",
+    default: null
 });
-export const useToggle = () => useRecoilState(toggle);
+
+export const useImageDataURL = () => useRecoilState(ImageDataURL);
+
+// ATOM DE USERDATA
+export const userData = atom({
+    key: "userData",
+    default: {
+        email: null,
+        id: null
+    }
+});
+
+export const useUserData = () => useRecoilState(userData);
 
 // ATOM DE LOCATION BEFORE
 export const locationBefore = atom({
@@ -28,18 +50,16 @@ export const locationBefore = atom({
 
 export const useLocationBefore = () => useRecoilState(locationBefore);
 
-// ATOM DE USER EMAIL
-export const userEmail = atom({
-    key: "userEmail",
-    default: "",
-});
 
-export const useUserEmail = () => useRecoilState(userEmail);
-
-// ATOM DE ARRAY MASCOTS CLOSE
-export const mascotsCloseFrom = atom({
-    key: "mascotsCloseFrom",
-    default: null,
+export const userDataSelector = selector({
+    key: "userDataSelector",
+    get: async ({ get }) => {
+        const myUserData = await getMe();
+        const [userData, setUserData] = useUserData();
+        
+        setUserData({ email: myUserData["email"], id: myUserData["id"] });
+        return myUserData;
+    },
 });
 
 export function useAuth() {
@@ -53,17 +73,4 @@ export function useAuth() {
         }
     }  
     return { login };
-}
-
-// CUSTOM HOOK QUE RETORNA LAS MASCOTAS CERCA
-export function getMascotsCloseFrom() {
-    const loc = useRecoilValue(_geoloc);
-    const setMascotsClose = useSetRecoilState(mascotsCloseFrom);
-    const { lat } = loc;
-    const { lng } = loc;
-
-    const data = mascotsClose(lat, lng);
-    setMascotsClose(data);
-
-    return data;
 }

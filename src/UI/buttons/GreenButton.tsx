@@ -1,6 +1,7 @@
 import React from "react";
 import css from "./GreenButton.css";
 
-export function GreenButton({ children: children }) {
-    return <button className={css.root}> {children} </button>;
+export function GreenButton(props) {
+
+    return <button onClick={props?.onClick} className={css.root}> { props.children } </button>;
 }

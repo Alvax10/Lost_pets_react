@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { useUserEmail } from "../../hooks";
+import React from "react";
+import { useUserData } from "../../hooks";
 import { checkEmail } from "../../lib/Login-api";
 import { useNavigate } from "react-router-dom";
 import { PinkButton } from "../../UI/buttons/PinkButton";
@@ -8,14 +8,14 @@ import { InputLabel } from "../../UI/InputLabel/InputLabel";
 
 function Login() {
     const navigate = useNavigate();
-    const [userEmail, setUserEmail] = useUserEmail();
+    const [userData, setUserData] = useUserData();
     
     async function submitHandler(e) {
         e.preventDefault();
         const email = e.target.email.value;
 
         // uso un atomo para recuperarlo en la siguiente pantalla
-        setUserEmail(email);
+        setUserData(userData["email"]);
         const response = await checkEmail(email);
         if (response.exists) {
             navigate("/login/password");

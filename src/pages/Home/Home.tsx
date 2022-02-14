@@ -1,12 +1,8 @@
-import React, { useEffect } from "react";
+import React, { Suspense } from "react";
+import { LoadingComp } from "../../UI/LoadingComp/loadingComp";
 import { HomeComp } from "../../components/Home/Home";
-import css from "./home.css";
 
 export function HomePage() {
 
-    return (
-        <div>
-            <HomeComp></HomeComp>
-        </div>
-    );
+    return <HomeComp></HomeComp>;
 }
