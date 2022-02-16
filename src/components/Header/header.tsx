@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
+import css from "./header.css";
+import { MenuOpen } from "./MenuOpen";
+import { useToggle } from "../../hooks";
+import { useNavigate } from "react-router-dom";
 import logoHeader from "../../assets/logo-pata.png";
 import burgerMenu from "../../assets/burger-menu.png";
-import css from "./header.css";
-import { useNavigate } from "react-router-dom";
-import { MenuOpen } from "./MenuOpen";
-
-export const useToggle = () => useState(false);
 
 export function HeaderPage() {
 

@@ -1,21 +1,19 @@
-import React, { useRef, useEffect, useState } from 'react';
 import css from "./Mapbox.css";
-import { InputLabel } from "../../UI/InputLabel/InputLabel";
-import { useLocationName } from '../ReportMascots/ReportMascot';
-export const mapbox_token = 'pk.eyJ1IjoiYWx2YXJvYmFzdGlhIiwiYSI6ImNreTByc3pzMTA0MWcydmxkemM1bDY5aTMifQ.y9exP2YyY3nQ3-qbR2rw1A';
 import mapboxgl from 'mapbox-gl';
+import { useLocation } from '../../hooks';
+import React, { useRef, useEffect, useState } from 'react';
+import { InputLabel } from "../../UI/InputLabel/InputLabel";
+export const mapbox_token = 'pk.eyJ1IjoiYWx2YXJvYmFzdGlhIiwiYSI6ImNreTByc3pzMTA0MWcydmxkemM1bDY5aTMifQ.y9exP2YyY3nQ3-qbR2rw1A';
 mapboxgl.accessToken = mapbox_token;
-import { useGeoloc } from '../ReportMascots/ReportMascot';
 
 export function MapboxComp(props) {
 
-    const [loc, setLoc] = useLocationName();
+    const [loc, setLoc] = useLocation();
     const mapContainer = useRef(null);
     const map = useRef(null);
     const [lng, setLng] = useState(-70.9);
     const [lat, setLat] = useState(42.35);
     const [zoom, setZoom] = useState(9);
-    const [geoloc, setGeoloc] = useGeoloc();
 
     useEffect(() => {
         if (map.current) return; // initialize map only once
@@ -32,14 +30,12 @@ export function MapboxComp(props) {
         const { features } = await (await fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${loc}.json?access_token=${mapbox_token}`)).json();
         // console.log(features[0]);
         if (!map.current) return; // wait for map to initialize
-        await map.current.flyTo({center: [features[0].geometry.coordinates[0], features[0].geometry.coordinates[1]], zoom: 15, speed: 0.7, curve: 2});
-        await ( await setGeoloc({
-            name: features[0]["place_name"],
-            lat: features[0].geometry.coordinates[1],
-            lng: features[0].geometry.coordinates[0],
-        }));
+        await map.current.flyTo({center: [features[0].geometry.coordinates[0], features[0].geometry.coordinates[1]], zoom: 15, speed: 0.6, curve: 2});
         await setLng(features[0].geometry.coordinates[0]);
         await setLat(features[0].geometry.coordinates[1]);
+
+        // ACA SETEO EL NAME Y LAS COORDENADAS
+        props.geoloc(features[0]["place_name"], features[0].geometry.coordinates[1], features[0].geometry.coordinates[0]);
     }
 
     useEffect(() => {

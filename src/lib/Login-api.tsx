@@ -11,9 +11,7 @@ export async function checkEmail(email) {
     });
 
     const data = await res.json();
-    return {
-        exists: data,
-    };
+    return data;
 }
 
 // obtiene un token
@@ -38,7 +36,6 @@ export async function getMe() {
 
     const res = await fetch(API_BASE_URL + "/me");
     const userData = await res.json();
-    console.log(userData);
 
     return userData;
 }

@@ -11,6 +11,7 @@ export async function eliminateMascot(mascotId, objectID) {
         body: JSON.stringify({ mascotId, objectID }),
     });
     await console.log("Mascota eliminada");
+    return true;
 }
 
 export async function editMascotData(petName, petPhoto, mascotLocation, mascotId, objectID) {
@@ -24,4 +25,5 @@ export async function editMascotData(petName, petPhoto, mascotLocation, mascotId
         body: JSON.stringify({ mascotId: mascotId, objectID: objectID, petName: petName, petPhoto: petPhoto, mascotLocation: mascotLocation }),
     });
     await console.log("Se actualizó la info! :D");
+    return true;
 }

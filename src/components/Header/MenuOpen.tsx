@@ -1,16 +1,16 @@
-import React, { useEffect } from "react";
-import closeButton from "../../assets/Vector.png";
+import React from "react";
 import css from "./MenuOpen.css";
+import { useToggle, useUserEmail } from "../../hooks";
 import { useNavigate } from "react-router-dom";
-import { useToggle } from "./header";
-import { useLocationBefore, useUserData, token } from "../../hooks";
+import closeButton from "../../assets/Vector.png";
+import { useLocationBefore, token } from "../../hooks";
 
 export function MenuOpen(props) {
     
     const navigate = useNavigate();
-    const [locBefore, setLocBefore] = useLocationBefore();
-    const userData = useUserData();
+    const [email, setEmail] = useUserEmail();
     const [toggle, setToggle] = useToggle();
+    const [locBefore, setLocBefore] = useLocationBefore();
 
     function goToMisDatos() {
         
@@ -59,7 +59,7 @@ export function MenuOpen(props) {
         <p onClick={goToMisMascotas} className={css["mis-mascotas-reportadas"]}> Mis mascotas reportadas </p>
         <p onClick={goToReportarMascota} className={css["reportar-mascota"]}> Reportar mascota</p>
         <label className={css["label-email"]} >
-            <p className={css["email"]}> {userData["email"]} </p>
+            <p className={css["email"]}> {email} </p>
         </label>
         <p onClick={finishSesion} className={css["cerrar-sesion"]}> cerrar sesión </p>
     </div>

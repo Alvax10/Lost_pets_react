@@ -1,17 +1,17 @@
 import css from "./Home.css";
-import React, { useEffect, useState } from "react";
-import { useRecoilValue } from "recoil";
-import { useUserData, _geoloc, userDataSelector } from "../../hooks";
-import { Link } from "react-router-dom";
-import { mascotsClose } from "../../lib/mascotas-cerca-api";
-import { CustomTitle } from "../../UI/Title/Title";
-import { TextInfo } from "../../UI/Texto info/TextoInfo";
-import { PinkButton } from "../../UI/buttons/PinkButton";
 import { CardComp } from "./Card";
+import { _geoloc } from "../../hooks";
+import React, { useState } from "react";
+import { useRecoilValue } from "recoil";
+import { Link } from "react-router-dom";
+import { CustomTitle } from "../../UI/Title/Title";
+import { PinkButton } from "../../UI/buttons/PinkButton";
+import { TextInfo } from "../../UI/Texto info/TextoInfo";
+import { mascotsClose } from "../../lib/mascotas-cerca-api";
 
 export function HomeComp() {
+
     const [data, setData] = useState(null);
-    const [userData, setUserData] = useUserData();
     const loc = useRecoilValue(_geoloc);
     const { lat } = loc;
     const { lng } = loc;
@@ -20,16 +20,6 @@ export function HomeComp() {
         const mascots = await mascotsClose(lat, lng);
         setData(mascots);
     }
-    
-    useEffect(() => {
-
-        if (!data) {
-            setData(false);
-
-        } else if (mascotsClose.length > data.length ) {
-            setMascotsClose();
-        }
-    }, [setMascotsClose]);
 
     // function randomBetween(min, max) {
     //     return Math.ceil(Math.random() * (max - min) + min);
@@ -39,7 +29,6 @@ export function HomeComp() {
         <div className={css.container}>
             <CustomTitle> Mascotas perdidas cerca tuyo </CustomTitle>
             { data.map((m) =>  <CardComp src={m["ImageDataURL"]} key={m["id"]} locName={m["_geoloc"]["name"]} petName={m["petName"]} ></CardComp> )}
-            { data.map((m) =>  console.log(m) )}
         </div>
         : 
         <div className={css.container}>

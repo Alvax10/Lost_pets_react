@@ -1,8 +1,8 @@
 import css from "./DropZone.css";
-import React, { useCallback, useState } from "react";
+import React, { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
-import logoHeader from "../../assets/logo-pata.png";
 import { useImageDataURL } from "../../hooks";
+import logoHeader from "../../assets/logo-pata.png";
 import { GreenButton } from "../../UI/buttons/GreenButton";
 
 export function MyDropZone() {

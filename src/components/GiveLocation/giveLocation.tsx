@@ -1,13 +1,14 @@
 import React from "react";
-import { PinkButton } from "../../UI/buttons/PinkButton";
-import { TextInfo } from "../../UI/Texto info/TextoInfo";
-import { CustomTitle } from "../../UI/Title/Title";
 import css from "./giveLocation.css";
 import { useNavigate } from "react-router-dom";
+import { CustomTitle } from "../../UI/Title/Title";
 import { _geoloc } from "../../hooks";
+import { PinkButton } from "../../UI/buttons/PinkButton";
+import { TextInfo } from "../../UI/Texto info/TextoInfo";
 import { useSetRecoilState } from "recoil";
 
 export function ExtractLocation() {
+
     const navigate = useNavigate();
     const setLoc = useSetRecoilState(_geoloc);
     

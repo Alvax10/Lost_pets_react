@@ -1,42 +1,47 @@
 import React, { useState } from "react";
 import css from "./ReportMascot.css";
-import { CustomTitle } from "../../UI/Title/Title";
-import { InputLabel } from "../../UI/InputLabel/InputLabel";
-import { MyDropZone } from "../DropZone/DropZone";
-import { useImageDataURL } from "../../hooks";
 import { MapboxComp } from "../Mapbox/Mapbox";
+import { useNavigate } from "react-router-dom";
+import { MyDropZone } from "../DropZone/DropZone";
+import { CustomTitle } from "../../UI/Title/Title";
 import { PinkButton } from "../../UI/buttons/PinkButton";
 import { GrayButton } from "../../UI/buttons/GrayButton";
-import { useNavigate } from "react-router-dom";
-import { reportMascot } from "../../lib/report-mascot-api";
+import { InputLabel } from "../../UI/InputLabel/InputLabel";
+import { useImageDataURL, useUserEmail, useReportMascot } from "../../hooks";
 
-export const useLocationName = () => useState(null);
-export const useGeoloc = () => useState(null);
+export function ReportMascotComp(props) {
 
-export function ReportMascotComp() {
-    const [img, setImg] = useImageDataURL();
-    const [loc, setLoc] = useLocationName();
-    const [geoloc, setGeoloc] = useGeoloc();
+    const { report } = useReportMascot();
     const navigate = useNavigate();
+    const email = useUserEmail();
+    const [img, setImg] = useImageDataURL();
+    const [loc, setLoc] = useState({
+        name: null,
+        lat: null,
+        lng: null,
+    });
+    const getLocation = (name, lat, lng) => {
+        setLoc({
+            name: name,
+            lat: lat,
+            lng: lng,
+        });
+    }
 
     async function reportarMascota(e) {
         e.preventDefault();
-        // navigate("/home");
-        // setLoc(e.target["location"].value);
-        console.log(e.target["petname"].value);
-        console.log(img);
-        console.log(geoloc);
-        // await reportMascot(e.target["petname"].value, img, geoloc);
+        await report(e.target["petname"].value, img, loc, email);
+        await navigate("/home");
     }
 
     return <div className={css.container}>
         <CustomTitle> Reportar mascota perdida </CustomTitle>
-        <form className={css.form}>
+        <form className={css.form} onSubmit={reportarMascota}>
             <InputLabel label="Nombre" type="text" name="petname" placeholder="Nombre de la mascota:" ></InputLabel>
             <MyDropZone></MyDropZone>
-            <MapboxComp></MapboxComp>
-            <PinkButton onSubmit={reportMascot}> Reportar mascota </PinkButton>
-            <GrayButton onClick={navigate("/home")}> Cancelar </GrayButton>
+            <MapboxComp geoloc={getLocation}></MapboxComp>
+            <PinkButton> Reportar mascota </PinkButton>
+            <GrayButton onClick={() => navigate("/home")}> Cancelar </GrayButton>
         </form>
     </div>
 }

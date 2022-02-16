@@ -1,13 +1,15 @@
 import React from "react";
 import css from "./MyData.css";
+import { useNavigate } from "react-router-dom";
+import { token, useUserData } from "../../hooks";
+import { CustomTitle } from "../../UI/Title/Title";
 import { PinkButton } from "../../UI/buttons/PinkButton";
 import { InputLabel } from "../../UI/InputLabel/InputLabel";
-import { CustomTitle } from "../../UI/Title/Title";
-import { token, useUserData } from "../../hooks";
 import { modifyUserInfo, signUpUser } from "../../lib/registrarse-api";
 
 export function MyData() {
 
+    const navigate = useNavigate();
     const userData = useUserData();
     async function modifyUserData(e) {
         e.preventDefault();
@@ -18,7 +20,7 @@ export function MyData() {
     async function signUp(e) {
         e.preventDefault();
         const password = e.target.password.value;
-        await signUpUser(userData["email"], password);
+        await navigate("/home");
     }
 
     return (token ? 

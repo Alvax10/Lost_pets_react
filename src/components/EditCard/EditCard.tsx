@@ -1,8 +1,8 @@
-import css from "./EditCard.css";
 import React from "react";
+import css from "./EditCard.css";
+import { _geoloc } from "../../hooks";
 import { useNavigate } from "react-router-dom";
 import lapizEdit from "../../assets/lapiz-edit.png";
-import { _geoloc } from "../../hooks";
 
 export function EditCard(props) {
     const navigate = useNavigate();

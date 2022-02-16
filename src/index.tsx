@@ -8,7 +8,7 @@ import { LoadingComp } from "./UI/LoadingComp/loadingComp";
 function App() {
 
     return (
-        // <Suspense fallback={LoadingComp}>
+        <Suspense fallback={LoadingComp}>
             <React.StrictMode>
                 <RecoilRoot>
                     <BrowserRouter>
@@ -16,7 +16,7 @@ function App() {
                     </BrowserRouter>
                 </RecoilRoot>
             </React.StrictMode>
-        // </Suspense >
+        </Suspense>
     );
 }
 

@@ -1,5 +1,5 @@
 import css from "./Card.css";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import closeButton from "../../assets/Vector.png";
 import { InputLabel } from "../../UI/InputLabel/InputLabel";
 import { PinkButton } from "../../UI/buttons/PinkButton";
@@ -14,15 +14,15 @@ export function CardComp(props) {
     const [toggle, setToggle] = useToggle();
     console.log(toggle);
 
-    function sendEmail(e) {
+    async function sendEmail(e) {
         e.preventDefault();
         setInfo({
             Name: e.target.username.value,
             phone_number: e.target.userphone.value,
             lastSeen: e.target.message.value
         });
-        setToggle(false);
-        sendEmailto(props.petName, info["lastSeen"], userData["email"], info["phone_number"]);
+        await sendEmailto(props.petName, info["lastSeen"], userData["email"], info["phone_number"]);
+        await setToggle(false);
     }
 
     return toggle ? <div className={css.note}>

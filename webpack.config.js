@@ -4,8 +4,8 @@ const liveServer = require("live-server");
 
 if (dev) {
   liveServer.start({
-    // root: "./",
-    file: "./src/",
+    root: "./",
+    file: "src/index.html",
   });
 }
 
