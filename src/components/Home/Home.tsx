@@ -18,11 +18,15 @@ export function HomeComp() {
     const loc = useRecoilValue(_geoloc);
     const { lat } = loc;
     const { lng } = loc;
-    setEmail(userData["email"]);
     
     async function setMascotsClose() {
         const mascots = await mascotsClose(lat, lng);
         setData(mascots);
+    }
+    
+    if (token) {
+        console.log(token);
+        setEmail(userData["email"]);
     }
 
     useEffect(() => {

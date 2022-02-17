@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { getMe } from "./lib/get-user-api";
 import { atom, useRecoilState, selector, useRecoilValue } from "recoil";
-export const token = localStorage.getItem("token");
+export const token = localStorage.getItem("token") ? localStorage.getItem("token") : false;
 // export const API_BASE_URL = "http://localhost:3011";
 export const API_BASE_URL = "https://desafio-final-dwf-m7.herokuapp.com";
 

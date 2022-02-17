@@ -14,6 +14,7 @@ export function Login() {
         e.preventDefault();
         const email = e.target.email.value;
         // uso un atomo para recuperarlo en la siguiente pantalla
+        console.log(email);
         setUserEmail(email);
         const response = await checkEmail(email);
         if (response) {
