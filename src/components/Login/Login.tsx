@@ -19,7 +19,7 @@ export function Login() {
         if (response) {
             navigate("/login/password");
         } else {
-            navigate("/login/profile-data");
+            navigate("/mis-datos");
         }
     }
 
