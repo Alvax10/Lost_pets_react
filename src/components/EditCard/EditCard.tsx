@@ -1,16 +1,63 @@
-import React from "react";
 import css from "./EditCard.css";
-import { _geoloc } from "../../hooks";
+import React, { useState } from "react";
+import { MapboxComp } from "../Mapbox/Mapbox";
 import { useNavigate } from "react-router-dom";
+import { MyDropZone } from "../DropZone/DropZone";
+import closeButton from "../../assets/Vector.png";
 import lapizEdit from "../../assets/lapiz-edit.png";
+import { useImageDataURL, _geoloc } from "../../hooks";
+import { PinkButton } from "../../UI/buttons/PinkButton";
+import { GreenButton } from "../../UI/buttons/GreenButton";
+import { InputLabel } from "../../UI/InputLabel/InputLabel";
+import { editMascotData, eliminateMascot } from "../../lib/despublicar-mascota-api";
 
 export function EditCard(props) {
     const navigate = useNavigate();
+    const [toggle, setToggle] = useState(false);
 
-    return <div className={css.card}>
-            <img className={css.img} src={props.src} alt="Imagen de la mascota" />
-            <h3 className={css.petname}> {props.petName} </h3>
-            <p className={css.info}> {props.locName} </p>
-            <img alt="Lápiz" onClick={() => navigate("/editar-mascota")} src={lapizEdit} className={css.edit} />
+    const [img, setImg] = useImageDataURL();
+    const [geoloc, setGeoloc] = useState({
+        name: null,
+        lat: null,
+        lng: null,
+    });
+    const location = (name, lat, lng) => {
+        setGeoloc({
+            name: name,
+            lat: lat,
+            lng: lng,
+        });
+    }
+
+    async function editMascot(e) {
+        e.preventDefault();
+        navigate("/home");
+        await editMascotData(props.petName, geoloc, img, props.id, props.objectID);
+    }
+
+    async function despublicarMascota(e) {
+        e.preventDefault();
+        await eliminateMascot(props.id, props.objectID);
+        await navigate("/home");
+    }
+
+    return toggle ? <div className={css.note}>
+            <img src={closeButton} className={css["close-button"]} alt="Botón de cierre" onClick={() => setToggle(false)} />
+            <h3 className={css["note-title"]}> Editar info de {props.petName} </h3>
+            <form onSubmit={editMascot} className={css["form"]}>
+                <InputLabel label="Nombre" type="text" name="petname" placeholder={`Nombre de la mascota: ${props.petName}`} ></InputLabel>
+                <MyDropZone src={props.src} ></MyDropZone>
+                <MapboxComp geoloc={location}></MapboxComp>
+                <PinkButton onClick={editMascot}> Guardar </PinkButton>
+                <GreenButton onClick={despublicarMascota}> Reportar como encontrado </GreenButton>
+                <p className={css.despublicar} onClick={despublicarMascota}> Despublicar </p>
+            </form>
+        </div>
+    :
+    <div className={css.card}>
+        <img className={css.img} src={props.src} alt="Imagen de la mascota" />
+        <h3 className={css.petname}> {props.petName} </h3>
+        <p className={css.info}> {props.locName} </p>
+        <img alt="Lápiz" onClick={() => setToggle(true)} src={lapizEdit} className={css.edit} />
     </div>
 }

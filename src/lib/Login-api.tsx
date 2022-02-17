@@ -5,6 +5,7 @@ export async function checkEmail(email) {
     const res = await fetch(API_BASE_URL + "/verify/user", {
         method: 'POST',
         headers: {
+            'Access-Control-Allow-Origin': '*',
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({ email }),
@@ -20,22 +21,12 @@ export async function auth(email, password) {
     const res = await fetch(API_BASE_URL + "/auth/token", {
         method: 'POST',
         headers: {
+            'Access-Control-Allow-Origin': '*',
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({ email, password }),
     });
     const token = await res.json();
-    
-    return {
-        token,
-    };
-}
-
-// OBTIENE LA DATA DEL USER VINCULADA AL TOKEN
-export async function getMe() {
-
-    const res = await fetch(API_BASE_URL + "/me");
-    const userData = await res.json();
-
-    return userData;
+    localStorage.setItem("token", token);
+    return { token };
 }

@@ -6,14 +6,14 @@ import { MyDropZone } from "../DropZone/DropZone";
 import { CustomTitle } from "../../UI/Title/Title";
 import { PinkButton } from "../../UI/buttons/PinkButton";
 import { GrayButton } from "../../UI/buttons/GrayButton";
+import { reportMascot } from "../../lib/report-mascot-api";
 import { InputLabel } from "../../UI/InputLabel/InputLabel";
-import { useImageDataURL, useUserEmail, useReportMascot } from "../../hooks";
+import { useImageDataURL, useUserEmail } from "../../hooks";
 
 export function ReportMascotComp(props) {
 
-    const { report } = useReportMascot();
     const navigate = useNavigate();
-    const email = useUserEmail();
+    const [email, setEmail] = useUserEmail();
     const [img, setImg] = useImageDataURL();
     const [loc, setLoc] = useState({
         name: null,
@@ -30,8 +30,8 @@ export function ReportMascotComp(props) {
 
     async function reportarMascota(e) {
         e.preventDefault();
-        await report(e.target["petname"].value, img, loc, email);
-        await navigate("/home");
+        navigate("/home");
+        await reportMascot(e.target["petname"].value, loc, img, email);
     }
 
     return <div className={css.container}>

@@ -4,25 +4,24 @@ import closeButton from "../../assets/Vector.png";
 import { InputLabel } from "../../UI/InputLabel/InputLabel";
 import { PinkButton } from "../../UI/buttons/PinkButton";
 import { sendEmailto } from "../../lib/send-mail-api";
-import { useUserData } from "../../hooks";
+import { useUserEmail } from "../../hooks";
+import { useNavigate } from "react-router-dom";
 
 export const useToggle = () => useState(false);
 
 export function CardComp(props) {
-    const [info, setInfo] = useState(null);
-    const userData = useUserData;
+    const navigate = useNavigate();
+    const [userEmail, setUserEmail] = useUserEmail();
     const [toggle, setToggle] = useToggle();
-    console.log(toggle);
 
     async function sendEmail(e) {
         e.preventDefault();
-        setInfo({
-            Name: e.target.username.value,
-            phone_number: e.target.userphone.value,
-            lastSeen: e.target.message.value
-        });
-        await sendEmailto(props.petName, info["lastSeen"], userData["email"], info["phone_number"]);
-        await setToggle(false);
+
+        setToggle(false);
+        navigate("/home");
+        const lastSeen = e.target.message.value;
+        const userPhone = e.target.userphone.value;
+        await sendEmailto(props.petName, lastSeen, userEmail, userPhone);
     }
 
     return toggle ? <div className={css.note}>

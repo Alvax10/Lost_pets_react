@@ -1,14 +1,17 @@
 import { API_BASE_URL, token } from "../hooks";
 
 // REPORTA UNA MASCOTA
-export async function reportMascot(petName, ImageDataURL, _geoloc, email) {
+export async function reportMascot(petName, _geoloc, ImageDataURL, email) {
 
-    await fetch(API_BASE_URL + "/report/mascot", {
+    const res = await fetch(API_BASE_URL + "/report/mascot", {
         method: 'POST',
         headers: {
+            'Access-Control-Allow-Origin': '*',
             'Content-Type': 'application/json',
             'Authorization': `bearer ${token}`,
         },
-        body: JSON.stringify({ petName: petName, _geoloc: _geoloc, ImageDataURL: ImageDataURL, email: email }),
+        body: JSON.stringify({ petName, _geoloc, ImageDataURL, email }),
     });
+
+    return true;
 }

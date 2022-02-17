@@ -1,5 +1,4 @@
-import React, { Suspense } from "react";
-import { LoadingComp } from "../../UI/LoadingComp/loadingComp";
+import React from "react";
 import { HomeComp } from "../../components/Home/Home";
 
 export function HomePage() {

@@ -1,15 +1,15 @@
 import React from "react";
 import css from "./MenuOpen.css";
-import { useToggle, useUserEmail } from "../../hooks";
 import { useNavigate } from "react-router-dom";
 import closeButton from "../../assets/Vector.png";
+import { useToggle, useUserEmail } from "../../hooks";
 import { useLocationBefore, token } from "../../hooks";
 
 export function MenuOpen(props) {
     
     const navigate = useNavigate();
-    const [email, setEmail] = useUserEmail();
     const [toggle, setToggle] = useToggle();
+    const [email, setEmail] = useUserEmail();
     const [locBefore, setLocBefore] = useLocationBefore();
 
     function goToMisDatos() {
@@ -21,18 +21,20 @@ export function MenuOpen(props) {
         } else {
             setLocBefore("/mis-datos");
             navigate("/login");
+            setToggle(false);
         }
     }
         
     function goToMisMascotas() {
+        
         if (token)  {
-
             setToggle(false);
             navigate("/mis-mascotas");
             
         } else {
             setLocBefore("/mis-mascotas");
             navigate("/login");
+            setToggle(false);
         }
     }
         
@@ -45,12 +47,15 @@ export function MenuOpen(props) {
         } else {
             setLocBefore("/reportar-mascota");
             navigate("/login");
+            setToggle(false);
         }
     }
 
-    function finishSesion() {
+    function finishSesion(e) {
+        e.preventDefault();
         setToggle(false);
-        localStorage.removeItem("auth_token");
+        localStorage.clear();
+        navigate("/home");
     }
 
     return <div className={css["menu-open"]}>

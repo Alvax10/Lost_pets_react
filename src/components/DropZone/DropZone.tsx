@@ -5,7 +5,7 @@ import { useImageDataURL } from "../../hooks";
 import logoHeader from "../../assets/logo-pata.png";
 import { GreenButton } from "../../UI/buttons/GreenButton";
 
-export function MyDropZone() {
+export function MyDropZone(props) {
 
     const [img, setImg] = useImageDataURL();
     const onDrop = useCallback((acceptedFiles) => {
@@ -29,7 +29,7 @@ export function MyDropZone() {
             <input {...getInputProps()} />
             <div className={css["drag-and-drop"]}> 
                 Drop your files here...
-                {   img   ?   <img className={css.img} src={img} />   :
+                {   img   ?   <img className={css.img} src={img || props?.src} />   :
                     <img className={css.logo} src={logoHeader} />
                 }
             </div>

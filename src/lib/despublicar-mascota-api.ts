@@ -5,6 +5,7 @@ export async function eliminateMascot(mascotId, objectID) {
     await fetch(API_BASE_URL + "/eliminate-mascot", {
         method: 'DELETE',
         headers: {
+            'Access-Control-Allow-Origin': '*',
             'Content-Type': 'application/json',
             'Authorization': `bearer ${token}`,
         },
@@ -19,6 +20,7 @@ export async function editMascotData(petName, petPhoto, mascotLocation, mascotId
     await fetch(API_BASE_URL + "/update-mascot-info", {
         method: 'PATCH',
         headers: {
+            'Access-Control-Allow-Origin': '*',
             'Content-Type': 'application/json',
             'Authorization': `bearer ${token}`,
         },
