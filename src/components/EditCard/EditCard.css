@@ -6,7 +6,7 @@
     margin-top: 20px;
     border-radius: 4px;
     border: 2px solid #000;
-    grid-template-columns: 295px 40px;
+    grid-template-columns: 290px 45px;
     grid-template-rows: 150px 80px;
 }
 
@@ -110,17 +110,6 @@
 }
 
 /* CARDS STYLES */
-.card {
-    width: 335px;
-    height: 234px;
-    display: grid;
-    margin-top: 20px;
-    border-radius: 4px;
-    border: 2px solid #000;
-    grid-template-columns: 240px 90px;
-    grid-template-rows: 150px 80px;
-}
-
 .img {
     width: 335px;
     border: none;
@@ -208,4 +197,20 @@
     border-radius: 4px;
     padding-left: 10px;;
     border: 1px solid rgb(9, 9, 9);
+}
+
+.green-button {
+    width: 300px;
+    height: 50px;
+    border: none;
+    display: flex;
+    cursor: pointer;
+    margin-top: 20px;
+    border-radius: 4px;
+    text-align: center;
+    align-self: center;
+    align-items: center;
+    justify-content: center;
+    justify-content: center;
+    background-color: #97EA9F;
 }

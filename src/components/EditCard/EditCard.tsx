@@ -7,7 +7,6 @@ import closeButton from "../../assets/Vector.png";
 import lapizEdit from "../../assets/lapiz-edit.png";
 import { useImageDataURL, _geoloc } from "../../hooks";
 import { PinkButton } from "../../UI/buttons/PinkButton";
-import { GreenButton } from "../../UI/buttons/GreenButton";
 import { InputLabel } from "../../UI/InputLabel/InputLabel";
 import { editMascotData, eliminateMascot } from "../../lib/despublicar-mascota-api";
 
@@ -32,7 +31,7 @@ export function EditCard(props) {
     async function editMascot(e) {
         e.preventDefault();
         navigate("/home");
-        await editMascotData(props.petName, img, geoloc, props.id, props.objectID);
+        await editMascotData(e.target.petname.value, img, geoloc, props.id, props.objectID);
     }
 
     async function despublicarMascota(e) {
@@ -48,8 +47,8 @@ export function EditCard(props) {
                 <InputLabel label="Nombre" type="text" name="petname" placeholder={`Nombre de la mascota: ${props.petName}`} ></InputLabel>
                 <MyDropZone src={props.src} ></MyDropZone>
                 <MapboxComp geoloc={location}></MapboxComp>
-                <PinkButton onClick={editMascot}> Guardar </PinkButton>
-                <GreenButton onClick={despublicarMascota}> Reportar como encontrado </GreenButton>
+                <PinkButton> Guardar </PinkButton>
+                <div className={css["green-button"]} onClick={despublicarMascota}> Reportar como encontrado </div>
                 <p className={css.despublicar} onClick={despublicarMascota}> Despublicar </p>
             </form>
         </div>
