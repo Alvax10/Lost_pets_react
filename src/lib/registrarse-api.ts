@@ -1,4 +1,4 @@
-import { API_BASE_URL , token } from "../hooks";
+import { API_BASE_URL } from "../hooks";
 
 export async function signUpUser(email, password) {
 
@@ -13,7 +13,7 @@ export async function signUpUser(email, password) {
     await console.log("Usuario registrado!");
 }
 
-export async function modifyUserInfo(password) {
+export async function modifyUserInfo(password, token) {
 
     await fetch(API_BASE_URL + "/user/data", {
         method: 'PUT',
@@ -23,5 +23,5 @@ export async function modifyUserInfo(password) {
         },
         body: JSON.stringify({ password }),
     })
-    console.log("Se modificó la data");
+    await console.log("Se modificó la data");
 }

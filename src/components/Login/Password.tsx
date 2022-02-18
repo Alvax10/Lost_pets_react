@@ -1,25 +1,25 @@
 import React from "react";
 import css from "./Login.css";
 import { auth } from "../../lib/Login-api";
-import { useUserEmail, useUserData } from "../../hooks";
 import { useNavigate } from "react-router-dom";
 import { PinkButton } from "../../UI/buttons/PinkButton";
 import { TextInfo } from "../../UI/Texto info/TextoInfo";
 import { InputLabel } from "../../UI/InputLabel/InputLabel";
+import { useUserEmail, useToken } from "../../hooks";
 
 function Password() {
     const navigate = useNavigate();
-    const userData = useUserData();
+    const [userToken, setUserToken] = useToken();
     const [userEmail, setUserEmail] = useUserEmail();
     
     async function submitHandler(e) {
         e.preventDefault();
         const password = e.target.password.value;
-        const authRes = await auth(userEmail, password);
-        if (authRes) {
-            console.log(userData);
+        const { token } = await auth(userEmail, password);
+        if (token) {
             console.log("login correcto");
-            navigate("/home");
+            await setUserToken(token);
+            await navigate("/home");
         }
     }
 
@@ -29,7 +29,7 @@ function Password() {
 
     return (
         <form className={css.container} onSubmit={submitHandler}>
-            <TextInfo style={style} > Tu email es: {userEmail}, id: {userData["id"]} </TextInfo>
+            <TextInfo style={style} > Tu email es: { userEmail } </TextInfo>
             <InputLabel placeholder="Tu contraseña..." label="ingresá tu password:" type="password" name="password"></InputLabel>
             <PinkButton> Ingresar </PinkButton>
         </form>

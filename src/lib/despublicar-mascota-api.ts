@@ -1,6 +1,6 @@
-import { API_BASE_URL , token } from "../hooks";
+import { API_BASE_URL } from "../hooks";
 
-export async function eliminateMascot(mascotId, objectID) {
+export async function eliminateMascot(mascotId, objectID, token) {
 
     await fetch(API_BASE_URL + "/eliminate-mascot", {
         method: 'DELETE',
@@ -15,7 +15,7 @@ export async function eliminateMascot(mascotId, objectID) {
     return true;
 }
 
-export async function editMascotData(petName, petPhoto, mascotLocation, mascotId, objectID) {
+export async function editMascotData(petName, petPhoto, mascotLocation, mascotId, objectID, token) {
 
     await fetch(API_BASE_URL + "/update-mascot-info", {
         method: 'PATCH',

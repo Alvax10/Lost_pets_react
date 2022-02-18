@@ -1,6 +1,6 @@
-import { API_BASE_URL , token } from "../hooks";
+import { API_BASE_URL } from "../hooks";
 
-export async function misMascotasReportadas(email) {
+export async function misMascotasReportadas(email, token) {
 
     const allMascotsByAUser = await fetch(API_BASE_URL + "/user/reported-mascots" + "?email=" + email, {
         method: 'GET',
@@ -11,11 +11,10 @@ export async function misMascotasReportadas(email) {
         }
     });
     const data = await allMascotsByAUser.json();
-    
-    if (data) {
-        return data;
-        
-    } else {
+    if (data.length <= 0) {
         return false;
+
+    } else {
+        return data;
     }
 }

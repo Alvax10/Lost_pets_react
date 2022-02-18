@@ -1,16 +1,24 @@
 import React from "react";
 import css from "./giveLocation.css";
-import { _geoloc } from "../../hooks";
 import { useSetRecoilState } from "recoil";
 import { useNavigate } from "react-router-dom";
 import { CustomTitle } from "../../UI/Title/Title";
-import { PinkButton } from "../../UI/buttons/PinkButton";
 import { TextInfo } from "../../UI/Texto info/TextoInfo";
+import { PinkButton } from "../../UI/buttons/PinkButton";
+import { _geoloc, useUserData, useUserEmail, useToken } from "../../hooks";
+export const localStorageToken = localStorage.getItem("token");
 
 export function ExtractLocation() {
 
     const navigate = useNavigate();
+    const userData = useUserData();
+    const [token, setToken] = useToken();
+    const [email, setEmail] = useUserEmail();
     const setLoc = useSetRecoilState(_geoloc);
+    
+    if (userData) {
+        setEmail(userData["email"]);
+    }
     
     function handlerLoc(e) {
         e.preventDefault();

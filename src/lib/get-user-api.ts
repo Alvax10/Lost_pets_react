@@ -1,15 +1,15 @@
-import { API_BASE_URL, token } from "../hooks";
+import { API_BASE_URL } from "../hooks";
 
 // OBTIENE LA DATA DEL USER VINCULADA AL TOKEN
-export async function getMe() {
+export async function getMe(token) {
 
     const res = await fetch(API_BASE_URL + "/me", {
         headers: {
             'Access-Control-Allow-Origin': '*',
-            'Authorization': `bearer ${token}`,
             'Content-type': 'application/json',
+            'Authorization': `bearer ${token}`,
         }
     });
-    const userData = await res.json();
-    return userData;
+    const myUserData = await res.json();
+    return myUserData;
 }

@@ -1,9 +1,20 @@
 import { useState } from "react";
 import { getMe } from "./lib/get-user-api";
+import { recoilPersist } from 'recoil-persist'
+const { persistAtom } = recoilPersist();
 import { atom, useRecoilState, selector, useRecoilValue } from "recoil";
-export const token = localStorage.getItem("token") ? localStorage.getItem("token") : false;
 // export const API_BASE_URL = "http://localhost:3011";
 export const API_BASE_URL = "https://desafio-final-dwf-m7.herokuapp.com";
+
+
+// ATOM DE TOKEN
+export const token = atom({
+    key: "token",
+    default: null,
+    effects_UNSTABLE: [persistAtom],
+});
+
+export const useToken = () => useRecoilState(token);
 
 // ATOM DE _geoloc
 export const _geoloc = atom({
@@ -13,6 +24,7 @@ export const _geoloc = atom({
         lng: null
     },
 });
+
 
 // ATOM DE ImageDataURL
 export const ImageDataURL = atom({
@@ -41,7 +53,8 @@ export const useLocationBefore = () => useRecoilState(locationBefore);
 export const userData = selector({
     key: "userData",
     get: async ({ get }) => {
-        const myUserData = getMe();
+        const[token, setToken] = useToken();
+        const myUserData = getMe(token);
         return myUserData;
     },
 });
@@ -51,3 +64,5 @@ export const useUserData = () => useRecoilValue(userData);
 // CUSTOM HOOKS QUE SE USAN A TRAVÉS DE LAS PÁGINAS (MENU OPEN Y REPORTAR/EDITAR MASCOTA)
 export const useLocation = () => useState(null);
 export const useToggle = () => useState(false);
+
+

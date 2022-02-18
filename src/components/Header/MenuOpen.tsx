@@ -2,15 +2,14 @@ import React from "react";
 import css from "./MenuOpen.css";
 import { useNavigate } from "react-router-dom";
 import closeButton from "../../assets/Vector.png";
-import { useToggle, useUserEmail } from "../../hooks";
-import { useLocationBefore, token } from "../../hooks";
+import { useToggle, useUserEmail, useToken } from "../../hooks";
 
 export function MenuOpen(props) {
     
     const navigate = useNavigate();
+    const [token, setToken] = useToken();
     const [toggle, setToggle] = useToggle();
     const [email, setEmail] = useUserEmail();
-    const [locBefore, setLocBefore] = useLocationBefore();
 
     function goToMisDatos() {
         
@@ -19,7 +18,6 @@ export function MenuOpen(props) {
             navigate("/mis-datos");
             
         } else {
-            setLocBefore("/mis-datos");
             navigate("/login");
             setToggle(false);
         }
@@ -32,7 +30,6 @@ export function MenuOpen(props) {
             navigate("/mis-mascotas");
             
         } else {
-            setLocBefore("/mis-mascotas");
             navigate("/login");
             setToggle(false);
         }
@@ -45,7 +42,6 @@ export function MenuOpen(props) {
             navigate("/reportar-mascota");
             
         } else {
-            setLocBefore("/reportar-mascota");
             navigate("/login");
             setToggle(false);
         }

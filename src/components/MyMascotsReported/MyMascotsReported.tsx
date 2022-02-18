@@ -1,8 +1,8 @@
 import css from "./MyMascotsReported.css";
-import { useUserData } from "../../hooks";
 import { useNavigate } from "react-router-dom";
 import { EditCard } from "../EditCard/EditCard";
 import React, { useEffect, useState } from "react";
+import { useUserEmail, useToken } from "../../hooks";
 import { TextInfo } from "../../UI/Texto info/TextoInfo";
 import { PinkButton } from "../../UI/buttons/PinkButton";
 import { misMascotasReportadas } from "../../lib/mis-mascotas-reportadas-api";
@@ -10,11 +10,12 @@ import { misMascotasReportadas } from "../../lib/mis-mascotas-reportadas-api";
 export function MyMascotsReported(props) {
 
     const navigate = useNavigate();
-    const userData = useUserData();
+    const [token, setToken] = useToken();
+    const [email, setEmail] = useUserEmail();
     const [data, setData] = useState(null);
 
     async function mascotasReportadas() {
-        const misMascotas = await misMascotasReportadas(userData["email"]);
+        const misMascotas = await misMascotasReportadas(email, token);
         setData(misMascotas);
     }
 

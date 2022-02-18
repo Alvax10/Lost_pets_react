@@ -26,7 +26,7 @@ export async function auth(email, password) {
         },
         body: JSON.stringify({ email, password }),
     });
+    
     const token = await res.json();
-    localStorage.setItem("token", token);
     return { token };
 }

@@ -5,15 +5,16 @@ import { useNavigate } from "react-router-dom";
 import { MyDropZone } from "../DropZone/DropZone";
 import closeButton from "../../assets/Vector.png";
 import lapizEdit from "../../assets/lapiz-edit.png";
-import { useImageDataURL, _geoloc } from "../../hooks";
 import { PinkButton } from "../../UI/buttons/PinkButton";
 import { InputLabel } from "../../UI/InputLabel/InputLabel";
+import { useImageDataURL, _geoloc, useToken } from "../../hooks";
 import { editMascotData, eliminateMascot } from "../../lib/despublicar-mascota-api";
 
 export function EditCard(props) {
     const navigate = useNavigate();
     const [toggle, setToggle] = useState(false);
 
+    const [token, setToken] = useToken();
     const [img, setImg] = useImageDataURL();
     const [geoloc, setGeoloc] = useState({
         name: null,
@@ -31,12 +32,12 @@ export function EditCard(props) {
     async function editMascot(e) {
         e.preventDefault();
         navigate("/home");
-        await editMascotData(e.target.petname.value, img, geoloc, props.id, props.objectID);
+        await editMascotData(e.target.petname.value, img, geoloc, props.id, props.objectID, token);
     }
 
     async function despublicarMascota(e) {
         e.preventDefault();
-        await eliminateMascot(props.id, props.objectID);
+        await eliminateMascot(props.id, props.objectID, token);
         await navigate("/home");
     }
 
