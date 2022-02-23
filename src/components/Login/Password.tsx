@@ -2,10 +2,10 @@ import React from "react";
 import css from "./Login.css";
 import { auth } from "../../lib/Login-api";
 import { useNavigate } from "react-router-dom";
+import { useUserEmail, useToken } from "../../hooks";
 import { PinkButton } from "../../UI/buttons/PinkButton";
 import { TextInfo } from "../../UI/Texto info/TextoInfo";
 import { InputLabel } from "../../UI/InputLabel/InputLabel";
-import { useUserEmail, useToken } from "../../hooks";
 
 function Password() {
     const navigate = useNavigate();

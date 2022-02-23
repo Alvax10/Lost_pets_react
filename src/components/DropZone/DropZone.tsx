@@ -29,7 +29,7 @@ export function MyDropZone(props) {
             <input {...getInputProps()} />
             <div className={css["drag-and-drop"]}> 
                 Drop your files here...
-                {   img   ?   <img className={css.img} src={img || props?.src} />   :
+                {   img   ?   <img className={css.img} src={img} />   :
                     <img className={css.logo} src={logoHeader} />
                 }
             </div>

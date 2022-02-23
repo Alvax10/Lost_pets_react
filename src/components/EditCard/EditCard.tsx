@@ -46,7 +46,7 @@ export function EditCard(props) {
             <h3 className={css["note-title"]}> Editar info de {props.petName} </h3>
             <form onSubmit={editMascot} className={css["form"]}>
                 <InputLabel label="Nombre" type="text" name="petname" placeholder={`Nombre de la mascota: ${props.petName}`} ></InputLabel>
-                <MyDropZone src={props.src} ></MyDropZone>
+                <MyDropZone></MyDropZone>
                 <MapboxComp geoloc={location}></MapboxComp>
                 <PinkButton> Guardar </PinkButton>
                 <div className={css["green-button"]} onClick={despublicarMascota}> Reportar como encontrado </div>

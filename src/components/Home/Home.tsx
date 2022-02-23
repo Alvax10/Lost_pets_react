@@ -7,12 +7,11 @@ import { CustomTitle } from "../../UI/Title/Title";
 import { PinkButton } from "../../UI/buttons/PinkButton";
 import { TextInfo } from "../../UI/Texto info/TextoInfo";
 import { mascotsClose } from "../../lib/mascotas-cerca-api";
-import { _geoloc, useToken, useUserEmail, useUserData } from "../../hooks";
+import { _geoloc, useToken, useUserEmail } from "../../hooks";
 
 export function HomeComp() {
     
     const navigate = useNavigate();
-    const userData = useUserData();
     const [token, setToken] = useToken();
     const [email, setEmail] = useUserEmail();
     const [data, setData] = useState(null);
@@ -24,6 +23,12 @@ export function HomeComp() {
         const mascots = await mascotsClose(lat, lng);
         setData(mascots);
     }
+
+    useEffect(() => {
+        if (data == null) {
+            setMascotsClose();
+        }
+    }, [data]);
 
     function goToReportMascot() {
         if (token) {
@@ -37,22 +42,17 @@ export function HomeComp() {
         return Math.ceil(Math.random() * (max - min) + min);
     }
 
-    useEffect(() => {
-        if (data == null) {
-            setMascotsClose();
-        }
-    }, [data]);
-
-    return data ? 
-    <div className={css.container}>
-        <CustomTitle> Mascotas perdidas cerca tuyo </CustomTitle>
-        <TextInfo> Bienvenid@ de vuelta { email } </TextInfo>
-        { data.map((m) =>  <CardComp src={m["ImageDataURL"]} key={randomBetween(1,1000)} locName={m["_geoloc"]["name"]} petName={m["petName"]} ></CardComp> )}
-    </div>
-    :
-    <div className={css.container}>
-        <CustomTitle> Mascotas perdidas cerca tuyo </CustomTitle>
-        <TextInfo> No hay mascotas perdidas cerca tuyo :D </TextInfo>
-        <PinkButton onClick={goToReportMascot}> Reportar Mascota </PinkButton>
-    </div>
+    return ( data ? 
+        <div className={css.container}>
+            <CustomTitle> Mascotas perdidas cerca tuyo </CustomTitle>
+            <TextInfo> Bienvenid@ de vuelta { email } </TextInfo>
+            { data.map((m) =>  <CardComp src={m["ImageDataURL"]} key={randomBetween(1,1000)} locName={m["_geoloc"]["name"]} petName={m["petName"]} ></CardComp> )}
+        </div>
+        :
+        <div className={css.container}>
+            <CustomTitle> Mascotas perdidas cerca tuyo </CustomTitle>
+            <TextInfo> No hay mascotas perdidas cerca tuyo :D </TextInfo>
+            <PinkButton onClick={goToReportMascot}> Reportar Mascota </PinkButton>
+        </div>
+    );
 }

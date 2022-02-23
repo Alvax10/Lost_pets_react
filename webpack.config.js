@@ -6,6 +6,7 @@ if (dev) {
   liveServer.start({
     root: "./",
     file: "src/index.html",
+    port: 3010,
   });
 }
 

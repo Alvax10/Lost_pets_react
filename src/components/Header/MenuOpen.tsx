@@ -1,12 +1,10 @@
 import React from "react";
 import css from "./MenuOpen.css";
-import { useNavigate } from "react-router-dom";
 import closeButton from "../../assets/Vector.png";
-import { useToggle, useUserEmail, useToken } from "../../hooks";
+import { useUserEmail } from "../../hooks";
 
 export function MenuOpen(props) {
     
-    const navigate = useNavigate();
     const [email, setEmail] = useUserEmail();
 
     return <div className={css["menu-open"]}>

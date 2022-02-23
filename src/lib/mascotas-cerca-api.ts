@@ -11,7 +11,7 @@ export async function mascotsClose(lat, lng) {
     });
     const data = await res.json();
     
-    if (data) {
+    if (data.length > 1) {
         return data;
 
     } else {

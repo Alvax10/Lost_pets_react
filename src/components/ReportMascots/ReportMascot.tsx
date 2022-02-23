@@ -31,8 +31,8 @@ export function ReportMascotComp(props) {
 
     async function reportarMascota(e) {
         e.preventDefault();
-        navigate("/home");
         await reportMascot(e.target["petname"].value, loc, img, email, token);
+        await navigate("/home");
     }
 
     return <div className={css.container}>

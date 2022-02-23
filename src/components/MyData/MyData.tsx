@@ -28,7 +28,7 @@ export function MyData() {
 
     return (userToken ? 
         <form onSubmit={modifyUserData} className={css.container}>
-            <CustomTitle> Mis Datos </CustomTitle>
+            <CustomTitle> Mis Datos / Registrarse </CustomTitle>
             <InputLabel label="Nombre" type="text" name="username" placeholder="Tu Nombre: " ></InputLabel>
             <InputLabel label="Contraseña" type="password" name="password" placeholder="Tu Contraseña: "></InputLabel>
             <InputLabel label="Repetir contraseña" type="password" name="password-2" placeholder="Repetir Contraseña: "></InputLabel>

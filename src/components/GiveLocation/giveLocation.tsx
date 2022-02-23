@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import css from "./giveLocation.css";
 import { useSetRecoilState } from "recoil";
 import { useNavigate } from "react-router-dom";
@@ -16,9 +16,11 @@ export function ExtractLocation() {
     const [email, setEmail] = useUserEmail();
     const setLoc = useSetRecoilState(_geoloc);
     
-    if (userData) {
-        setEmail(userData["email"]);
-    }
+    useEffect(() => {
+        if (userData && !email) {
+            setEmail(userData["email"]);
+        }
+    }, [localStorageToken]);
     
     function handlerLoc(e) {
         e.preventDefault();
