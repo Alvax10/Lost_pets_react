@@ -20,7 +20,7 @@ export function ExtractLocation() {
         if (userData && !email) {
             setEmail(userData["email"]);
         }
-    }, [localStorageToken]);
+    }, [token]);
     
     function handlerLoc(e) {
         e.preventDefault();

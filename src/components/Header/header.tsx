@@ -54,6 +54,7 @@ export function HeaderPage(props) {
     function finishSesion(e) {
         e.preventDefault();
         setToggle(false);
+        setToken(null);
         localStorage.clear();
         navigate("/home");
     }

@@ -23,7 +23,7 @@ export function MapboxComp(props) {
             center: [lng, lat],
             zoom: zoom
         });
-    });
+    }, [mapContainer]);
 
     async function handleSearch(e) {
         e.preventDefault();
@@ -38,19 +38,9 @@ export function MapboxComp(props) {
         props.geoloc(features[0]["place_name"], features[0].geometry.coordinates[1], features[0].geometry.coordinates[0]);
     }
 
-    useEffect(() => {
-        if (!map.current) return; // wait for map to initialize
-        map.current.on('move', () => {
-            setLng(map.current.getCenter().lng.toFixed(4));
-            setLat(map.current.getCenter().lat.toFixed(4));
-            setZoom(map.current.getZoom().toFixed(2));
-        });
-    });
-
     return (
     <div className={css.container}>
         <link href="https://api.mapbox.com/mapbox-gl-js/v1.10.1/mapbox-gl.css" rel="stylesheet" />
-        <div className={css.sidebar}> Longitude: {lng} | Latitude: {lat} | Zoom: {zoom} </div>
         <div ref={mapContainer} className={css["map-container"]} />
         <InputLabel name="location" onChange={event => setLoc(event.target.value)} type="text" label="Ubicación" />
         <div onClick={handleSearch} className={css["green-button"]}> Marcar Ubicación </div>

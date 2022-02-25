@@ -42,11 +42,19 @@ export function HomeComp() {
         return Math.ceil(Math.random() * (max - min) + min);
     }
 
-    return ( data ? 
+    return (data && token) ?
+        
         <div className={css.container}>
             <CustomTitle> Mascotas perdidas cerca tuyo </CustomTitle>
             <TextInfo> Bienvenid@ de vuelta { email } </TextInfo>
             { data.map((m) =>  <CardComp src={m["ImageDataURL"]} key={randomBetween(1,1000)} locName={m["_geoloc"]["name"]} petName={m["petName"]} ></CardComp> )}
+        </div>
+        : (!data && token) ?
+        <div className={css.container}>
+            <CustomTitle> Mascotas perdidas cerca tuyo </CustomTitle>
+            <TextInfo> Bienvenid@ de vuelta { email } </TextInfo>
+            <TextInfo> No hay mascotas perdidas cerca tuyo :D </TextInfo>
+            <PinkButton onClick={goToReportMascot}> Reportar Mascota </PinkButton>
         </div>
         :
         <div className={css.container}>
@@ -54,5 +62,4 @@ export function HomeComp() {
             <TextInfo> No hay mascotas perdidas cerca tuyo :D </TextInfo>
             <PinkButton onClick={goToReportMascot}> Reportar Mascota </PinkButton>
         </div>
-    );
 }
