@@ -12,15 +12,15 @@ export function ExtractLocation() {
 
     const navigate = useNavigate();
     const userData = useUserData();
-    // const [token, setToken] = useToken();
+    const [token, setToken] = useToken();
     const [email, setEmail] = useUserEmail();
     const setLoc = useSetRecoilState(_geoloc);
     
     useEffect(() => {
-        if (localStorageToken && !email) {
+        if (userData && !email) {
             setEmail(userData["email"]);
         }
-    }, [localStorageToken]);
+    }, [token]);
     
     function handlerLoc(e) {
         e.preventDefault();
