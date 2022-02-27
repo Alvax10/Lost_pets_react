@@ -23,7 +23,7 @@ export function MyMascotsReported(props) {
         if (data == null) {
             mascotasReportadas();
         }
-    });
+    }, [data]);
 
     function randomBetween(min, max) {
         return Math.ceil(Math.random() * (max - min) + min);

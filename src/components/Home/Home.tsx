@@ -28,7 +28,7 @@ export function HomeComp() {
         if (data == null) {
             setMascotsClose();
         }
-    }, [data]);
+    }, [setMascotsClose]);
 
     function goToReportMascot() {
         if (token) {

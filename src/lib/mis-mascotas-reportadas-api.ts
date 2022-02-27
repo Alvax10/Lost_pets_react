@@ -2,7 +2,7 @@ import { API_BASE_URL } from "../hooks";
 
 export async function misMascotasReportadas(email, token) {
 
-    const allMascotsByAUser = await fetch(API_BASE_URL + "/user/reported-mascots" + "?email=" + email, {
+    const res = await fetch(API_BASE_URL + "/user/reported-mascots" + "?email=" + email, {
         method: 'GET',
         headers: {
             'Access-Control-Allow-Origin': '*',
@@ -10,7 +10,7 @@ export async function misMascotasReportadas(email, token) {
             'Authorization': `bearer ${token}`,
         }
     });
-    const data = await allMascotsByAUser.json();
+    const data = await res.json();
     if (data.length <= 0) {
         return false;
 

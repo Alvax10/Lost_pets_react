@@ -11,10 +11,10 @@ export async function mascotsClose(lat, lng) {
     });
     const data = await res.json();
     
-    if (data.length > 1) {
-        return data;
-
-    } else {
+    if (data.length <= 0) {
         return false;
+        
+    } else {
+        return data;
     }
 }
