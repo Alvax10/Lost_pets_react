@@ -25,10 +25,8 @@ export function HomeComp() {
     }
 
     useEffect(() => {
-        if (data == null) {
-            setMascotsClose();
-        }
-    }, [data]);
+        setMascotsClose();
+    }, []);
 
     function goToReportMascot() {
         if (token) {

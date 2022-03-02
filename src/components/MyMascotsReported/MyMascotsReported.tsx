@@ -20,10 +20,8 @@ export function MyMascotsReported(props) {
     }
 
     useEffect(() => {
-        if (data == null) {
-            mascotasReportadas();
-        }
-    }, [data]);
+        mascotasReportadas();
+    }, []);
 
     function randomBetween(min, max) {
         return Math.ceil(Math.random() * (max - min) + min);
