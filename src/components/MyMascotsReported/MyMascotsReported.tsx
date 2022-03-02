@@ -14,16 +14,14 @@ export function MyMascotsReported(props) {
     const [email, setEmail] = useUserEmail();
     const [data, setData] = useState(null);
 
-    async function mascotasReportadas() {
+    const mascotasReportadas = async() => {
         const misMascotas = await misMascotasReportadas(email, token);
         setData(misMascotas);
     }
 
     useEffect(() => {
-        if (data == null) {
-            mascotasReportadas();
-        }
-    }, [data]);
+        mascotasReportadas();
+    }, []);
 
     function randomBetween(min, max) {
         return Math.ceil(Math.random() * (max - min) + min);

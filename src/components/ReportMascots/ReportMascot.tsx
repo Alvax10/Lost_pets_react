@@ -31,6 +31,7 @@ export function ReportMascotComp(props) {
 
     async function reportarMascota(e) {
         e.preventDefault();
+        await console.log(e.target["petname"].value, loc, email, token);
         await reportMascot(e.target["petname"].value, loc, img, email, token);
         await navigate("/home");
     }

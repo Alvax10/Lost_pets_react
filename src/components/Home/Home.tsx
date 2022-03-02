@@ -19,16 +19,14 @@ export function HomeComp() {
     const { lat } = loc;
     const { lng } = loc;
 
-    async function setMascotsClose() {
+    const setMascotsClose = async() => {
         const mascots = await mascotsClose(lat, lng);
         setData(mascots);
     }
 
     useEffect(() => {
-        if (data == null) {
-            setMascotsClose();
-        }
-    }, [setMascotsClose]);
+        setMascotsClose();
+    }, []);
 
     function goToReportMascot() {
         if (token) {
