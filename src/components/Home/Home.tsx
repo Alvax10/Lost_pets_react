@@ -57,7 +57,6 @@ export function HomeComp() {
         :
         <div className={css.container}>
             <CustomTitle> Mascotas perdidas cerca tuyo </CustomTitle>
-            <TextInfo> No hay mascotas perdidas cerca tuyo :D </TextInfo>
-            <PinkButton onClick={goToReportMascot}> Reportar Mascota </PinkButton>
+            { data.map((m) =>  <CardComp src={m["ImageDataURL"]} key={randomBetween(1,1000)} locName={m["_geoloc"]["name"]} petName={m["petName"]} ></CardComp> )}
         </div>
 }
