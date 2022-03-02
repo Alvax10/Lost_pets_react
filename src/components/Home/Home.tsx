@@ -25,7 +25,9 @@ export function HomeComp() {
     }
 
     useEffect(() => {
-        setMascotsClose();
+        if (data == null) {
+            setMascotsClose();
+        }
     }, []);
 
     function goToReportMascot() {

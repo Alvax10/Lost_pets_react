@@ -20,7 +20,9 @@ export function MyMascotsReported(props) {
     }
 
     useEffect(() => {
-        mascotasReportadas();
+        if (data == null) {
+            mascotasReportadas();
+        }
     }, []);
 
     function randomBetween(min, max) {
