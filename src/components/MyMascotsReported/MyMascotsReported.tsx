@@ -23,7 +23,10 @@ export function MyMascotsReported(props) {
         if (data == null) {
             mascotasReportadas();
         }
-    }, []);
+        return () => {
+            console.log("se paró el proceso de useEffect");
+        }
+    }, [mascotasReportadas]);
 
     function randomBetween(min, max) {
         return Math.ceil(Math.random() * (max - min) + min);

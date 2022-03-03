@@ -28,7 +28,10 @@ export function HomeComp() {
         if (data == null) {
             setMascotsClose();
         }
-    }, []);
+        return () => {
+            console.log("se paró el proceso de useEffect");
+        }
+    }, [setMascotsClose]);
 
     function goToReportMascot() {
         if (token) {
