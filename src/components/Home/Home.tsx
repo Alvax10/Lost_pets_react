@@ -21,17 +21,16 @@ export function HomeComp() {
 
     const setMascotsClose = async() => {
         const mascots = await mascotsClose(lat, lng);
-        setData(mascots);
+        await setData(mascots);
     }
 
     useEffect(() => {
-        if (data == null) {
-            setMascotsClose();
-        }
+        setMascotsClose();
         return () => {
-            console.log("se paró el proceso de useEffect");
+            console.log("Unmouting se paró el proceso de useEffect de mascotasCerca");
+            setData(null);
         }
-    }, [setMascotsClose]);
+    }, []);
 
     function goToReportMascot() {
         if (token) {
@@ -51,6 +50,7 @@ export function HomeComp() {
             <CustomTitle> Mascotas perdidas cerca tuyo </CustomTitle>
             <TextInfo> Bienvenid@ de vuelta { email } </TextInfo>
             { data.map((m) =>  <CardComp src={m["ImageDataURL"]} key={randomBetween(1,1000)} locName={m["_geoloc"]["name"]} petName={m["petName"]} ></CardComp> )}
+            { data.map((m) => console.log(m) )}
         </div>
         : (!data && token) ?
         <div className={css.container}>
@@ -59,9 +59,16 @@ export function HomeComp() {
             <TextInfo> No hay mascotas perdidas cerca tuyo :D </TextInfo>
             <PinkButton onClick={goToReportMascot}> Reportar Mascota </PinkButton>
         </div>
-        :
+        : (data && !token) ?
         <div className={css.container}>
             <CustomTitle> Mascotas perdidas cerca tuyo </CustomTitle>
             { data.map((m) =>  <CardComp src={m["ImageDataURL"]} key={randomBetween(1,1000)} locName={m["_geoloc"]["name"]} petName={m["petName"]} ></CardComp> )}
+            { data.map((m) => console.log(m) )}
+        </div>
+        :
+        <div className={css.container}>
+            <CustomTitle> Mascotas perdidas cerca tuyo </CustomTitle>
+            <TextInfo> No hay mascotas perdidas cerca tuyo :D </TextInfo>
+            <PinkButton onClick={goToReportMascot}> Reportar Mascota </PinkButton>
         </div>
 }

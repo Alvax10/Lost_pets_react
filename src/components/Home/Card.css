@@ -64,10 +64,10 @@
 /* NOTE STYLES */
 .note {
     top: 10%;
-    left: 30%;
     padding: 10px;
     height: 603px;
     position: fixed;
+    border: rgb(33, 33, 33) 1px;
     border-radius: 4px;
     background: #fefefe;
 }
