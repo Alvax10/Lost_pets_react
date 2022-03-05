@@ -5,16 +5,16 @@ import { useNavigate } from "react-router-dom";
 import { CustomTitle } from "../../UI/Title/Title";
 import { TextInfo } from "../../UI/Texto info/TextoInfo";
 import { PinkButton } from "../../UI/buttons/PinkButton";
-import { _geoloc, useUserData, useUserEmail, useToken } from "../../hooks";
+import { _geoloc, useUserData, useUserEmail, useToken, useGeoloc } from "../../hooks";
 export const localStorageToken = localStorage.getItem("token");
 
 export function ExtractLocation() {
 
     const navigate = useNavigate();
     const userData = useUserData();
+    const [geoloc, setGeoloc] = useGeoloc();
     const [token, setToken] = useToken();
     const [email, setEmail] = useUserEmail();
-    const setLoc = useSetRecoilState(_geoloc);
     
     useEffect(() => {
         if (userData && !email) {
@@ -33,7 +33,7 @@ export function ExtractLocation() {
 
         function success(position) {
             var coord = position.coords;
-            setLoc({ lat: coord.latitude, lng: coord.longitude });
+            setGeoloc({ lat: coord.latitude, lng: coord.longitude });
             navigate("/home");
         }
 

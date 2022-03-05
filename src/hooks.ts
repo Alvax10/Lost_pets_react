@@ -23,8 +23,10 @@ export const _geoloc = atom({
         lat: null,
         lng: null
     },
+    effects_UNSTABLE: [persistAtom],
 });
 
+export const useGeoloc = () => useRecoilState(_geoloc);
 
 // ATOM DE ImageDataURL
 export const ImageDataURL = atom({

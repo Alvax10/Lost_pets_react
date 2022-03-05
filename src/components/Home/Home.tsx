@@ -7,7 +7,7 @@ import { CustomTitle } from "../../UI/Title/Title";
 import { PinkButton } from "../../UI/buttons/PinkButton";
 import { TextInfo } from "../../UI/Texto info/TextoInfo";
 import { mascotsClose } from "../../lib/mascotas-cerca-api";
-import { _geoloc, useToken, useUserEmail } from "../../hooks";
+import { _geoloc, useToken, useUserEmail, useGeoloc } from "../../hooks";
 
 export function HomeComp() {
     
@@ -15,7 +15,7 @@ export function HomeComp() {
     const [token, setToken] = useToken();
     const [email, setEmail] = useUserEmail();
     const [data, setData] = useState(null);
-    const loc = useRecoilValue(_geoloc);
+    const [loc, setLoc] = useGeoloc();
     const { lat } = loc;
     const { lng } = loc;
 
