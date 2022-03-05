@@ -24,7 +24,7 @@ export function MyMascotsReported(props) {
 
         mascotasReportadas();
         return () => {
-            console.log("se paró el proceso de useEffect de misMascotas");
+            // console.log("se paró el proceso de useEffect de misMascotas");
             setData(null);
         }
     }, []);

@@ -11,7 +11,7 @@ export async function misMascotasReportadas(email, token) {
         }
     });
     const data = await res.json();
-    if (data.length <= 0) {
+    if (data.length == 0) {
         return false;
 
     } else {

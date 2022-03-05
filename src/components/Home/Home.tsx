@@ -27,7 +27,7 @@ export function HomeComp() {
     useEffect(() => {
         setMascotsClose();
         return () => {
-            console.log("Unmouting se paró el proceso de useEffect de mascotasCerca");
+            // console.log("Unmouting se paró el proceso de useEffect de mascotasCerca");
             setData(null);
         }
     }, []);
@@ -50,7 +50,7 @@ export function HomeComp() {
             <CustomTitle> Mascotas perdidas cerca tuyo </CustomTitle>
             <TextInfo> Bienvenid@ de vuelta { email } </TextInfo>
             { data.map((m) =>  <CardComp src={m["ImageDataURL"]} key={randomBetween(1,1000)} locName={m["_geoloc"]["name"]} petName={m["petName"]} ></CardComp> )}
-            { data.map((m) => console.log(m) )}
+            {/* { data.map((m) => console.log(m) )} */}
         </div>
         : (!data && token) ?
         <div className={css.container}>
