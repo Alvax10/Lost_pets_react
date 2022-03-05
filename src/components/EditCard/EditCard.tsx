@@ -7,7 +7,7 @@ import closeButton from "../../assets/Vector.png";
 import lapizEdit from "../../assets/lapiz-edit.png";
 import { PinkButton } from "../../UI/buttons/PinkButton";
 import { InputLabel } from "../../UI/InputLabel/InputLabel";
-import { useImageDataURL, _geoloc, useToken } from "../../hooks";
+import { useImageDataURL, useToken } from "../../hooks";
 import { editMascotData, eliminateMascot } from "../../lib/despublicar-mascota-api";
 
 export function EditCard(props) {

@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { getMe } from "./lib/get-user-api";
 import { recoilPersist } from 'recoil-persist'
-const { persistAtom } = recoilPersist();
+const { persistAtom } = recoilPersist({
+    key: "data",
+    storage: localStorage,
+});
 import { atom, useRecoilState, selector, useRecoilValue } from "recoil";
-// export const API_BASE_URL = "http://localhost:3011";
-export const API_BASE_URL = "https://desafio-final-dwf-m7.herokuapp.com";
+export const API_BASE_URL = "http://localhost:3011";
+// export const API_BASE_URL = "https://desafio-final-dwf-m7.herokuapp.com";
 
 
 // ATOM DE TOKEN
@@ -17,7 +20,7 @@ export const token = atom({
 export const useToken = () => useRecoilState(token);
 
 // ATOM DE _geoloc
-export const _geoloc = atom({
+export const geoloc = atom({
     key: "_geoloc",
     default: {
         lat: null,
@@ -26,7 +29,7 @@ export const _geoloc = atom({
     effects_UNSTABLE: [persistAtom],
 });
 
-export const useGeoloc = () => useRecoilState(_geoloc);
+export const useGeoloc = () => useRecoilState(geoloc);
 
 // ATOM DE ImageDataURL
 export const ImageDataURL = atom({

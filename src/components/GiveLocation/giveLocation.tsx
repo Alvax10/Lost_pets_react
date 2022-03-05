@@ -1,12 +1,11 @@
 import React, { useEffect } from "react";
 import css from "./giveLocation.css";
-import { useSetRecoilState } from "recoil";
 import { useNavigate } from "react-router-dom";
 import { CustomTitle } from "../../UI/Title/Title";
 import { TextInfo } from "../../UI/Texto info/TextoInfo";
 import { PinkButton } from "../../UI/buttons/PinkButton";
-import { _geoloc, useUserData, useUserEmail, useToken, useGeoloc } from "../../hooks";
-export const localStorageToken = localStorage.getItem("token");
+import { useUserData, useUserEmail, useToken, useGeoloc } from "../../hooks";
+const data = JSON.parse(localStorage.getItem("data"));
 
 export function ExtractLocation() {
 
@@ -20,7 +19,14 @@ export function ExtractLocation() {
         if (userData && !email) {
             setEmail(userData["email"]);
         }
-    }, [token]);
+        if (geoloc) {
+            // console.log("Ya hay loc: ", data["_geoloc"]);
+            setGeoloc({ lat: data["_geoloc"]["lat"], lng: data["_geoloc"]["lng"] });
+            navigate("/home");
+        }
+
+    }, [token, geoloc]);
+
     
     function handlerLoc(e) {
         e.preventDefault();

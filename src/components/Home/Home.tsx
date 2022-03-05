@@ -1,21 +1,20 @@
 import css from "./Home.css";
 import { CardComp } from "./Card";
-import { useRecoilValue } from "recoil";
 import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { CustomTitle } from "../../UI/Title/Title";
 import { PinkButton } from "../../UI/buttons/PinkButton";
 import { TextInfo } from "../../UI/Texto info/TextoInfo";
 import { mascotsClose } from "../../lib/mascotas-cerca-api";
-import { _geoloc, useToken, useUserEmail, useGeoloc } from "../../hooks";
+import { useToken, useUserEmail, useGeoloc } from "../../hooks";
 
 export function HomeComp() {
     
-    const loc = JSON.parse(localStorage.getItem("_geoloc"));
     const navigate = useNavigate();
     const [token, setToken] = useToken();
     const [email, setEmail] = useUserEmail();
     const [data, setData] = useState(null);
+    const [loc, setLoc] = useGeoloc();
     const { lat } = loc;
     const { lng } = loc;
 
@@ -50,7 +49,6 @@ export function HomeComp() {
             <CustomTitle> Mascotas perdidas cerca tuyo </CustomTitle>
             <TextInfo> Bienvenid@ de vuelta { email } </TextInfo>
             { data.map((m) =>  <CardComp src={m["ImageDataURL"]} key={randomBetween(1,1000)} locName={m["_geoloc"]["name"]} petName={m["petName"]} ></CardComp> )}
-            {/* { data.map((m) => console.log(m) )} */}
         </div>
         : (!data && token) ?
         <div className={css.container}>
@@ -63,7 +61,6 @@ export function HomeComp() {
         <div className={css.container}>
             <CustomTitle> Mascotas perdidas cerca tuyo </CustomTitle>
             { data.map((m) =>  <CardComp src={m["ImageDataURL"]} key={randomBetween(1,1000)} locName={m["_geoloc"]["name"]} petName={m["petName"]} ></CardComp> )}
-            { data.map((m) => console.log(m) )}
         </div>
         :
         <div className={css.container}>
