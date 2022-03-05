@@ -7,7 +7,7 @@ import { PinkButton } from "../../UI/buttons/PinkButton";
 import { TextInfo } from "../../UI/Texto info/TextoInfo";
 import { mascotsClose } from "../../lib/mascotas-cerca-api";
 import { useToken, useUserEmail, useGeoloc } from "../../hooks";
-const data = JSON.parse(localStorage.getItem("data"));
+const dataStorage = JSON.parse(localStorage.getItem("data"));
 
 export function HomeComp() {
     
@@ -25,8 +25,11 @@ export function HomeComp() {
     }
 
     useEffect(() => {
-        if (data["_geoloc"] && !loc) {
-            setLoc({ lat: data["_geoloc"]["lng"], lng: data["_geoloc"]["lng"] });
+        if (dataStorage) {
+            if (dataStorage["_geoloc"]) {
+                console.log("Ya hay loc: ", dataStorage["_geoloc"]);
+                setLoc({ lat: dataStorage["_geoloc"]["lat"], lng: dataStorage["_geoloc"]["lng"] });
+            }
         }
         setMascotsClose();
         return () => {
