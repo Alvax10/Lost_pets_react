@@ -6,8 +6,8 @@ const { persistAtom } = recoilPersist({
     storage: localStorage,
 });
 import { atom, useRecoilState, selector, useRecoilValue } from "recoil";
-export const API_BASE_URL = "http://localhost:3011";
-// export const API_BASE_URL = "https://desafio-final-dwf-m7.herokuapp.com";
+// export const API_BASE_URL = "http://localhost:3011";
+export const API_BASE_URL = "https://desafio-final-dwf-m7.herokuapp.com";
 
 
 // ATOM DE TOKEN
