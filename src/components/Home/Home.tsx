@@ -11,11 +11,11 @@ import { _geoloc, useToken, useUserEmail, useGeoloc } from "../../hooks";
 
 export function HomeComp() {
     
+    const loc = JSON.parse(localStorage.getItem("_geoloc"));
     const navigate = useNavigate();
     const [token, setToken] = useToken();
     const [email, setEmail] = useUserEmail();
     const [data, setData] = useState(null);
-    const [loc, setLoc] = useGeoloc();
     const { lat } = loc;
     const { lng } = loc;
 

@@ -18,7 +18,7 @@ export const useToken = () => useRecoilState(token);
 
 // ATOM DE _geoloc
 export const _geoloc = atom({
-    key: "itemState",
+    key: "_geoloc",
     default: {
         lat: null,
         lng: null
