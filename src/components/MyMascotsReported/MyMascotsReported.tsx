@@ -36,7 +36,7 @@ export function MyMascotsReported(props) {
     return (data ? <div className={css.container}>
             <h1 className={css.title}> Mis Mascotas reportadas </h1>
             { data.map((m) => <EditCard  key={randomBetween(1,1000)} id={m["id"]} objectID={m["objectID"]} src={m["ImageDataURL"]} locName={m["_geoloc"]["name"]} petName={m["petName"]}></EditCard>)}
-            { data.map((m) => console.log(m) )}
+            {/* { data.map((m) => console.log(m) )} */}
         </div>
         :
         <div className={css.container}>
