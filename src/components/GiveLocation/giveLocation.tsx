@@ -20,7 +20,7 @@ export function ExtractLocation() {
             setEmail(userData["email"]);
         }
         if (data["_geoloc"]) {
-            // console.log("Ya hay loc: ", data["_geoloc"]);
+            console.log("Ya hay loc: ", data["_geoloc"]);
             setGeoloc({ lat: data["_geoloc"]["lat"], lng: data["_geoloc"]["lng"] });
             navigate("/home");
         }
