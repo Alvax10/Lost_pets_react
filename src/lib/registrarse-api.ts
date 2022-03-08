@@ -14,7 +14,7 @@ export async function signUpUser(email, password) {
     await console.log("Usuario registrado!");
 }
 
-export async function modifyUserInfo(oldEmail, newEmail?, password?) {
+export async function modifyUserInfo(oldEmail, newEmail?, newPassword?) {
 
     await fetch(API_BASE_URL + "/user/data", {
         method: 'PATCH',
@@ -22,7 +22,8 @@ export async function modifyUserInfo(oldEmail, newEmail?, password?) {
             'Content-Type': 'application/json',
             'Authorization': `bearer ${data["token"]}`,
         },
-        body: JSON.stringify({ oldEmail: oldEmail, newEmail: newEmail, newPassword: password }),
-    })
+        body: JSON.stringify({ oldEmail: oldEmail, newEmail: newEmail, newPassword: newPassword }),
+    });
     await console.log("Se modificó la data");
+    return true;
 }

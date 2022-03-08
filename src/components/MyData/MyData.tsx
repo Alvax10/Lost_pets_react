@@ -23,13 +23,9 @@ export function MyData() {
             setEmail(newEmail);
             await navigate("/home");
             
-        } else if (password) {
+        }
+        if (password) {
             await modifyUserInfo(email, password);
-            await navigate("/home");
-            
-        } else {
-            await modifyUserInfo(email, newEmail, password);
-            setEmail(newEmail);
             await navigate("/home");
         }
     }
