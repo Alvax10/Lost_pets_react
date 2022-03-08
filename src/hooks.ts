@@ -1,14 +1,13 @@
 import { useState } from "react";
 import { getMe } from "./lib/get-user-api";
 import { recoilPersist } from 'recoil-persist'
+import { atom, useRecoilState, selector, useRecoilValue } from "recoil";
+export const API_BASE_URL = "https://desafio-final-dwf-m7.herokuapp.com";
+// export const API_BASE_URL = "http://localhost:3011";
 const { persistAtom } = recoilPersist({
     key: "data",
     storage: localStorage,
 });
-import { atom, useRecoilState, selector, useRecoilValue } from "recoil";
-// export const API_BASE_URL = "http://localhost:3011";
-export const API_BASE_URL = "https://desafio-final-dwf-m7.herokuapp.com";
-
 
 // ATOM DE TOKEN
 export const token = atom({
@@ -16,8 +15,6 @@ export const token = atom({
     default: null,
     effects_UNSTABLE: [persistAtom],
 });
-
-export const useToken = () => useRecoilState(token);
 
 // ATOM DE _geoloc
 export const geoloc = atom({
@@ -29,31 +26,24 @@ export const geoloc = atom({
     effects_UNSTABLE: [persistAtom],
 });
 
-export const useGeoloc = () => useRecoilState(geoloc);
-
 // ATOM DE ImageDataURL
 export const ImageDataURL = atom({
     key: "ImageDataURL",
     default: null
 });
 
-export const useImageDataURL = () => useRecoilState(ImageDataURL);
-
 // ATOM DE USERDATA
 export const userEmail = atom({
-    key: "userEmail",
-    default: null
+    key: "email",
+    default: null,
+    effects_UNSTABLE: [persistAtom],
 });
-
-export const useUserEmail = () => useRecoilState(userEmail);
 
 // ATOM DE LOCATION BEFORE
 export const locationBefore = atom({
     key: "Location before",
     default: "/home",
 });
-
-export const useLocationBefore = () => useRecoilState(locationBefore);
 
 export const userData = selector({
     key: "userData",
@@ -64,6 +54,12 @@ export const userData = selector({
     },
 });
 
+
+export const useToken = () => useRecoilState(token);
+export const useGeoloc = () => useRecoilState(geoloc);
+export const useImageDataURL = () => useRecoilState(ImageDataURL);
+export const useLocationBefore = () => useRecoilState(locationBefore);
+export const useUserEmail = () => useRecoilState(userEmail);
 export const useUserData = () => useRecoilValue(userData);
 
 // CUSTOM HOOKS QUE SE USAN A TRAVÉS DE LAS PÁGINAS (MENU OPEN Y REPORTAR/EDITAR MASCOTA)

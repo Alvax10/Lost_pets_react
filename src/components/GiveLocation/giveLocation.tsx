@@ -54,6 +54,7 @@ export function ExtractLocation() {
     return (
         <div className={css.container}>
             <CustomTitle> Mascotas perdidas cerca tuyo </CustomTitle>
+            <TextInfo style={css["text-info"]}> Esta página sirve para reportar y encontrar mascotas perdidas cerca de tu área. </TextInfo>
             <TextInfo style={css["text-info"]}> Para ver las mascotas reportadas cerca tuyo necesitamos permiso para conocer tu ubicación. </TextInfo>
             <PinkButton className={css.button} onClick={handlerLoc}> Dar mi ubicación </PinkButton>
         </div>

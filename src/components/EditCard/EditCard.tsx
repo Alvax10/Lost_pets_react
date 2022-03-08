@@ -14,7 +14,6 @@ export function EditCard(props) {
     const navigate = useNavigate();
     const [toggle, setToggle] = useState(false);
 
-    const [token, setToken] = useToken();
     const [img, setImg] = useImageDataURL();
     const [geoloc, setGeoloc] = useState({
         name: null,
@@ -31,13 +30,13 @@ export function EditCard(props) {
 
     async function editMascot(e) {
         e.preventDefault();
-        await editMascotData(props.id, e.target.petname.value, img, geoloc, props.id, props.objectID, token);
+        await editMascotData(props.id, e.target.petname.value, img, geoloc, props.id, props.objectID);
         await navigate("/home");
     }
 
     async function despublicarMascota(e) {
         e.preventDefault();
-        await eliminateMascot(props.id, props.objectID, token);
+        await eliminateMascot(props.id, props.objectID);
         await navigate("/home");
     }
 

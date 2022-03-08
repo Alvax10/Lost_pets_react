@@ -1,13 +1,14 @@
 import { API_BASE_URL } from "../hooks";
+const dataStorage = JSON.parse(localStorage.getItem("data"));
 
-export async function misMascotasReportadas(email, token) {
+export async function misMascotasReportadas(email) {
 
     const res = await fetch(API_BASE_URL + "/user/reported-mascots" + "?email=" + email, {
         method: 'GET',
         headers: {
             'Access-Control-Allow-Origin': '*',
             'Content-Type': 'application/json',
-            'Authorization': `bearer ${token}`,
+            'Authorization': `bearer ${dataStorage["token"]}`,
         }
     });
     const data = await res.json();

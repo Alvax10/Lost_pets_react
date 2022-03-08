@@ -1,5 +1,5 @@
 import css from "./Home.css";
-import { CardComp } from "./Card";
+import { CardComp } from "../Card/Card";
 import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { CustomTitle } from "../../UI/Title/Title";
@@ -25,12 +25,6 @@ export function HomeComp() {
     }
 
     useEffect(() => {
-        if (dataStorage) {
-            if (dataStorage["_geoloc"]) {
-                console.log("Ya hay loc: ", dataStorage["_geoloc"]);
-                setLoc({ lat: dataStorage["_geoloc"]["lat"], lng: dataStorage["_geoloc"]["lng"] });
-            }
-        }
         setMascotsClose();
         return () => {
             // console.log("Unmouting se paró el proceso de useEffect de mascotasCerca");

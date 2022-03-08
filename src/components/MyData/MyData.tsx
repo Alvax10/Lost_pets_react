@@ -16,7 +16,17 @@ export function MyData() {
     async function modifyUserData(e) {
         e.preventDefault();
         const password = e.target.password.value;
-        await modifyUserInfo(password, userToken);
+        const newEmail = e.target.newEmail.value;
+        
+        if (newEmail) {
+            await modifyUserInfo(email, newEmail);
+            
+        } else if (password) {
+            await modifyUserInfo(email, password);
+            
+        } else {
+            await modifyUserInfo(email, newEmail, password);
+        }
     }
 
     async function signUp(e) {
@@ -30,6 +40,7 @@ export function MyData() {
         <form onSubmit={modifyUserData} className={css.container}>
             <CustomTitle> Mis Datos / Registrarse </CustomTitle>
             <InputLabel label="Nombre" type="text" name="username" placeholder="Tu Nombre: " ></InputLabel>
+            <InputLabel label="Email" type="text" name="newEmail" placeholder="Tu nuevo email: "></InputLabel>
             <InputLabel label="Contraseña" type="password" name="password" placeholder="Tu Contraseña: "></InputLabel>
             <InputLabel label="Repetir contraseña" type="password" name="password-2" placeholder="Repetir Contraseña: "></InputLabel>
             <PinkButton className={css.button}> Guardar </PinkButton>

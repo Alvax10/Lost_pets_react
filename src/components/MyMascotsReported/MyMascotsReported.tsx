@@ -10,12 +10,11 @@ import { misMascotasReportadas } from "../../lib/mis-mascotas-reportadas-api";
 export function MyMascotsReported(props) {
 
     const navigate = useNavigate();
-    const [token, setToken] = useToken();
     const [email, setEmail] = useUserEmail();
     const [data, setData] = useState(null);
 
     const mascotasReportadas = async() => {
-        const misMascotas = await misMascotasReportadas(email, token);
+        const misMascotas = await misMascotasReportadas(email);
         await setData(misMascotas);
     }
 
