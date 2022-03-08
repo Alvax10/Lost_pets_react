@@ -20,12 +20,17 @@ export function MyData() {
         
         if (newEmail) {
             await modifyUserInfo(email, newEmail);
+            setEmail(newEmail);
+            await navigate("/home");
             
         } else if (password) {
             await modifyUserInfo(email, password);
+            await navigate("/home");
             
         } else {
             await modifyUserInfo(email, newEmail, password);
+            setEmail(newEmail);
+            await navigate("/home");
         }
     }
 
