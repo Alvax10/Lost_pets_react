@@ -6,6 +6,7 @@ export async function misMascotasReportadas(email) {
     const res = await fetch(API_BASE_URL + "/user/reported-mascots" + "?email=" + email, {
         method: 'GET',
         headers: {
+            'mode': 'cors',
             'Access-Control-Allow-Origin': '*',
             'Content-Type': 'application/json',
             'Authorization': `bearer ${dataStorage["token"]}`,

@@ -6,6 +6,7 @@ export async function signUpUser(email, password) {
     await fetch(API_BASE_URL + '/auth', {
         method: 'POST',
         headers: {
+            'mode': 'cors',
             'Access-Control-Allow-Origin': '*',
             'Content-Type': 'application/json',
         },
@@ -19,6 +20,7 @@ export async function modifyUserInfo(oldEmail, newEmail?, newPassword?) {
     await fetch(API_BASE_URL + "/user/data", {
         method: 'PATCH',
         headers: {
+            'mode': 'cors',
             'Content-Type': 'application/json',
             'Authorization': `bearer ${data["token"]}`,
         },

@@ -5,6 +5,7 @@ export async function mascotsClose(lat, lng) {
 
     const res = await fetch(API_BASE_URL + "/mascots-close-from" + "?lat=" + lat + "&lng=" + lng, {
         headers: {
+            'mode': 'cors',
             'Access-Control-Allow-Origin': '*',
             'Content-Type': 'application/json',
         }
