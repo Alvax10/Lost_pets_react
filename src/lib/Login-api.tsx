@@ -5,7 +5,6 @@ export async function checkEmail(email) {
     const res = await fetch(API_BASE_URL + "/verify/user", {
         method: 'POST',
         headers: {
-            'mode': 'no-cors',
             'Access-Control-Allow-Origin': '*',
             'Content-Type': 'application/json',
         },
@@ -22,7 +21,6 @@ export async function auth(email, password) {
     const res = await fetch(API_BASE_URL + "/auth/token", {
         method: 'POST',
         headers: {
-            'mode': 'no-cors',
             'Access-Control-Allow-Origin': '*',
             'Content-Type': 'application/json',
         },

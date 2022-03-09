@@ -18,14 +18,18 @@ export function MyData() {
         const password = e.target.password.value;
         const newEmail = e.target.newEmail.value;
         
-        if (newEmail) {
-            await modifyUserInfo(email, newEmail);
-            setEmail(newEmail);
+        if (newEmail && password) {
+            await modifyUserInfo(email, newEmail, password);
+            await setEmail(newEmail);
             await navigate("/home");
             
-        }
-        if (password) {
+        } else if (password && !newEmail) {
             await modifyUserInfo(email, password);
+            await navigate("/home");
+
+        } else if (newEmail && !password) {
+            await modifyUserInfo(email, newEmail);
+            await setEmail(newEmail);
             await navigate("/home");
         }
     }

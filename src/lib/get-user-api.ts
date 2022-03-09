@@ -5,7 +5,6 @@ export async function getMe(token) {
 
     const res = await fetch(API_BASE_URL + "/me", {
         headers: {
-            'mode': 'no-cors',
             'Access-Control-Allow-Origin': '*',
             'Content-type': 'application/json',
             'Authorization': `bearer ${token}`,
