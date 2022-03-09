@@ -7,6 +7,7 @@ export async function sendEmailto(petName, newLocation, userEmail, numeroDelUsua
     const res = await fetch(API_BASE_URL + "/send-email-to-user", {
         method: 'POST',
         headers: {
+            'mode': 'no-cors',
             'Access-Control-Allow-Origin': '*',
             'Content-Type': 'application/json',
             'Authorization': `bearer ${data["token"]}`,

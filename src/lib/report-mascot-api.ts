@@ -7,6 +7,7 @@ export async function reportMascot(petName, _geoloc, ImageDataURL, email) {
     const res = await fetch(API_BASE_URL + "/report/mascot", {
         method: 'POST',
         headers: {
+            'mode': 'no-cors',
             'Access-Control-Allow-Origin': '*',
             'Content-Type': 'application/json',
             'Authorization': `bearer ${data["token"]}`,
