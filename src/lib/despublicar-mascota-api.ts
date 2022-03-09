@@ -6,6 +6,7 @@ export async function eliminateMascot(mascotId, objectID) {
     await fetch(API_BASE_URL + "/eliminate-mascot", {
         method: 'DELETE',
         headers: {
+            'mode': 'cors',
             'Access-Control-Allow-Origin': '*',
             'Content-Type': 'application/json',
             'Authorization': `bearer ${data["token"]}`,
