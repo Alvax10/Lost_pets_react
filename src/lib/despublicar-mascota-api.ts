@@ -6,8 +6,6 @@ export async function eliminateMascot(mascotId, objectID) {
     await fetch(API_BASE_URL + "/eliminate-mascot", {
         method: 'DELETE',
         headers: {
-            'mode': 'cors',
-            'Access-Control-Allow-Origin': '*',
             'Content-Type': 'application/json',
             'Authorization': `bearer ${data["token"]}`,
         },
@@ -22,8 +20,6 @@ export async function editMascotData(userId, petName, ImageDataURL, mascotLocati
     const mascotaEditada = await fetch(API_BASE_URL + "/update-mascot-info", {
         method: 'PATCH',
         headers: {
-            'mode': 'cors',
-            'Access-Control-Allow-Origin': '*',
             "Content-type": "application/json",
             'Authorization': `bearer ${data["token"]}`,
         },
