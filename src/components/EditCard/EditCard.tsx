@@ -12,6 +12,7 @@ import { editMascotData, eliminateMascot } from "../../lib/despublicar-mascota-a
 
 export function EditCard(props) {
     const navigate = useNavigate();
+    const [token, setToken] = useToken();
     const [toggle, setToggle] = useState(false);
 
     const [img, setImg] = useImageDataURL();
@@ -30,13 +31,13 @@ export function EditCard(props) {
 
     async function editMascot(e) {
         e.preventDefault();
-        await editMascotData(props.id, e.target.petname.value, img, geoloc, props.id, props.objectID);
+        await editMascotData(props.id, e.target.petname.value, img, geoloc, props.id, props.objectID, token);
         await navigate("/home");
     }
 
     async function despublicarMascota(e) {
         e.preventDefault();
-        await eliminateMascot(props.id, props.objectID);
+        await eliminateMascot(props.id, props.objectID, token);
         await navigate("/home");
     }
 

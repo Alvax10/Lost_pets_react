@@ -8,12 +8,13 @@ import { PinkButton } from "../../UI/buttons/PinkButton";
 import { GrayButton } from "../../UI/buttons/GrayButton";
 import { reportMascot } from "../../lib/report-mascot-api";
 import { InputLabel } from "../../UI/InputLabel/InputLabel";
-import { useImageDataURL, useUserEmail } from "../../hooks";
+import { useImageDataURL, useToken, useUserEmail } from "../../hooks";
 
 export function ReportMascotComp(props) {
 
     const navigate = useNavigate();
     const [email, setEmail] = useUserEmail();
+    const [token, setToken] = useToken();
     const [img, setImg] = useImageDataURL();
     const [loc, setLoc] = useState({
         name: null,
@@ -30,7 +31,7 @@ export function ReportMascotComp(props) {
 
     async function reportarMascota(e) {
         e.preventDefault();
-        await reportMascot(e.target["petname"].value, loc, img, email);
+        await reportMascot(e.target["petname"].value, loc, img, email, token);
         await navigate("/home");
     }
 

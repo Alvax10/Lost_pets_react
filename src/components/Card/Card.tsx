@@ -11,6 +11,7 @@ export const useToggle = () => useState(false);
 
 export function CardComp(props) {
     const navigate = useNavigate();
+    const [token, setToken] = useToken();
     const [userEmail, setUserEmail] = useUserEmail();
     const [toggle, setToggle] = useToggle();
 
@@ -21,7 +22,7 @@ export function CardComp(props) {
         navigate("/home");
         const lastSeen = e.target.message.value;
         const userPhone = e.target.userphone.value;
-        await sendEmailto(props.petName, lastSeen, userEmail, userPhone);
+        await sendEmailto(props.petName, lastSeen, userEmail, userPhone, token);
     }
 
     return toggle ? <div className={css.note}>

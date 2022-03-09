@@ -1,14 +1,13 @@
 import { API_BASE_URL } from "../hooks";
-const data = JSON.parse(localStorage.getItem("data"));
 
 // REPORTA UNA MASCOTA
-export async function reportMascot(petName, _geoloc, ImageDataURL, email) {
+export async function reportMascot(petName, _geoloc, ImageDataURL, email, token) {
 
     const res = await fetch(API_BASE_URL + "/report/mascot", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `bearer ${data["token"]}`,
+            'Authorization': `bearer ${token}`,
         },
         body: JSON.stringify({ petName, _geoloc, ImageDataURL, email }),
     });

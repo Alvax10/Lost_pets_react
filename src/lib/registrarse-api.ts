@@ -1,5 +1,4 @@
 import { API_BASE_URL } from "../hooks";
-const data = JSON.parse(localStorage.getItem("data"));
 
 export async function signUpUser(email, password) {
 
@@ -13,13 +12,13 @@ export async function signUpUser(email, password) {
     await console.log("Usuario registrado!");
 }
 
-export async function modifyUserInfo(oldEmail, newEmail?, newPassword?) {
+export async function modifyUserInfo(token, oldEmail, newEmail?, newPassword?) {
 
     await fetch(API_BASE_URL + "/user/data", {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `bearer ${data["token"]}`,
+            'Authorization': `bearer ${token}`,
         },
         body: JSON.stringify({ oldEmail: oldEmail, newEmail: newEmail, newPassword: newPassword }),
     });
