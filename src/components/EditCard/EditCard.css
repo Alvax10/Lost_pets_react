@@ -63,12 +63,12 @@
 
 /* NOTE STYLES */
 .note {
+    top: 200px;
     height: 603px;
     padding: 10px;
-    display: flex;
-    border-radius: 4px;
-    background: #fefefe;
-    flex-direction: column;
+    position: fixed;
+    border-radius: 10px;
+    background-color: #8AF1FF;
 }
 
 /* EDIT MASCOT STYLE */

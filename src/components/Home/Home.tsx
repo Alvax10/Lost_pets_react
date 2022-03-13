@@ -7,7 +7,6 @@ import { PinkButton } from "../../UI/buttons/PinkButton";
 import { TextInfo } from "../../UI/Texto info/TextoInfo";
 import { mascotsClose } from "../../lib/mascotas-cerca-api";
 import { useToken, useUserEmail, useGeoloc } from "../../hooks";
-const dataStorage = JSON.parse(localStorage.getItem("data"));
 
 export function HomeComp() {
     
