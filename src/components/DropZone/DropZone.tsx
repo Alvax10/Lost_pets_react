@@ -33,7 +33,7 @@ export function MyDropZone(props) {
                     <img className={css.logo} src={logoHeader} />
                 }
             </div>
-            <GreenButton class={css.button} onClick={(e) => e.preventDefault()}> Agregar foto </GreenButton>
+            <div className={css.button} onClick={(e) => e.preventDefault()}> Agregar foto </div>
         </div>
     );
 }
