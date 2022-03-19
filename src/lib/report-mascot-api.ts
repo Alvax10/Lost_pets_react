@@ -12,5 +12,5 @@ export async function reportMascot(petName, _geoloc, ImageDataURL, email, token)
         body: JSON.stringify({ petName, _geoloc, ImageDataURL, email }),
     });
 
-    return true;
+    return res;
 }

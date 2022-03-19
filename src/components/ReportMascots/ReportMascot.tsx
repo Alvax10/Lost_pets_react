@@ -32,6 +32,7 @@ export function ReportMascotComp(props) {
     async function reportarMascota(e) {
         e.preventDefault();
         await reportMascot(e.target["petname"].value, loc, img, email, token);
+        await alert("Mascota reportada correctamente!");
         await navigate("/home");
     }
 

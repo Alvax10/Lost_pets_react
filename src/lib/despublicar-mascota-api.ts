@@ -25,5 +25,5 @@ export async function editMascotData(userId, petName, ImageDataURL, mascotLocati
         body: JSON.stringify({ userId: userId, mascotId: mascotId, objectID: objectID, petName: petName, ImageDataURL: ImageDataURL, mascotLocation: mascotLocation }),
     });
     await console.log("Se actualizó la info! :D");
-    return true;
+    return mascotaEditada;
 }
