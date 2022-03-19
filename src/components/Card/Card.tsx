@@ -31,7 +31,7 @@ export function CardComp(props) {
             <h3 className={css["note-title"]}> Reportar info de {props.petName} </h3>
             <form onSubmit={sendEmail} className={css["form"]}>
                 <InputLabel label="Nombre de usuario" type="text" name="username" placeholder="Ej: Alvaro" ></InputLabel>
-                <InputLabel label="Número del usuario" type="number" name="userphone" placeholder="Ej: 3492123456" ></InputLabel>
+                <InputLabel label="Número del usuario" type="tel" name="userphone" placeholder="Ej: 3492123456" ></InputLabel>
                 <InputLabel label="¿Donde lo viste?" type="text" name="message" placeholder="Ej: Plaza 25 de mayo" ></InputLabel>
                 <PinkButton className={css.button}> Enviar </PinkButton>
             </form>
