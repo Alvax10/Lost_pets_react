@@ -32,12 +32,14 @@ export function EditCard(props) {
     async function editMascot(e) {
         e.preventDefault();
         await editMascotData(props.id, e.target.petname.value, img, geoloc, props.id, props.objectID, token);
+        await alert("Mascota editada correctamente!");
         await navigate("/home");
     }
 
     async function despublicarMascota(e) {
         e.preventDefault();
         await eliminateMascot(props.id, props.objectID, token);
+        await alert("Mascota despublicada correctamente!");
         await navigate("/home");
     }
 

@@ -23,6 +23,7 @@ export function CardComp(props) {
         const lastSeen = e.target.message.value;
         const userPhone = e.target.userphone.value;
         await sendEmailto(props.petName, lastSeen, userEmail, userPhone, token);
+        await alert("Email enviado correctamente!");
     }
 
     return toggle ? <div className={css.note}>

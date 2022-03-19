@@ -13,4 +13,5 @@ export async function sendEmailto(petName, newLocation, userEmail, numeroDelUsua
     });
     await res.json();
     await console.log("Mail enviado!");
+    return true;
 }
