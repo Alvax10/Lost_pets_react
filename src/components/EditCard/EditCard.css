@@ -63,12 +63,11 @@
 
 /* NOTE STYLES */
 .note {
-    top: 160px;
-    height: 603px;
+    top: 120px;
     padding: 10px;
-    position: fixed;
+    position: absolute;
     border-radius: 10px;
-    background-color: #8AF1FF;
+    background-color: bisque;
 }
 
 /* EDIT MASCOT STYLE */
@@ -160,15 +159,6 @@
     text-decoration: underline;
 }
 
-/* NOTE STYLES */
-.note {
-    padding: 10px;
-    height: 603px;
-    position: absolute;
-    border: rgb(21, 21, 21) 1px;
-    border-radius: 4px;
-    background: #fefefe;
-}
 /* BOTON DE CIERRE */
 .close-button {
     width: 30px;

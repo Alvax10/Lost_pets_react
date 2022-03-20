@@ -63,12 +63,12 @@
 
 /* NOTE STYLES */
 .note {
-    padding: 10px;
-    top: 160px;
+    top: 120px;
     height: 603px;
-    position: fixed;
-    background-color: #8AF1FF;
+    padding: 10px;
+    position: absolute;
     border-radius: 10px;
+    background-color: bisque;
 }
 
 /* BOTON DE CIERRE */

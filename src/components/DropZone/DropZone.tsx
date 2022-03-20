@@ -25,7 +25,7 @@ export function MyDropZone(props) {
     const {getRootProps, getInputProps} = useDropzone({onDrop})
     
     return (
-        <div className={css["contaiener"]} {...getRootProps()}>
+        <div className={css["container"]} {...getRootProps()}>
             <input {...getInputProps()} />
             <div className={css["drag-and-drop"]}> 
                 Drop your files here...
