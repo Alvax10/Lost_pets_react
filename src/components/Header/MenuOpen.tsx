@@ -1,24 +1,12 @@
-import React, { useEffect } from "react";
+import React from "react";
 import css from "./MenuOpen.css";
 import closeButton from "../../assets/Vector.png";
 import { useUserEmail, useToken, useGeoloc } from "../../hooks";
-import { useNavigate } from "react-router-dom";
 
 export function MenuOpen(props) {
     
-    const navigate = useNavigate()
     const [token, setToken] = useToken();
-    const [loc, setLoc] = useGeoloc();
     const [email, setEmail] = useUserEmail();
-
-    useEffect(() => {
-        if (loc == null) {
-            navigate("/");
-        }
-        if (token == null && email == null) {
-            navigate("/login");
-        }
-    },[])
 
     return token ? 
     

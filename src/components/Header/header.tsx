@@ -2,13 +2,15 @@ import React, { useEffect } from "react";
 import css from "./header.css";
 import { MenuOpen } from "./MenuOpen";
 import { Outlet, useNavigate } from "react-router-dom";
-import { useToggle, useToken } from "../../hooks";
+import { useToggle, useToken, useGeoloc, useUserEmail } from "../../hooks";
 import logoHeader from "../../assets/logo-pata.png";
 import burgerMenu from "../../assets/burger-menu.png";
 
 export function HeaderPage(props) {
 
     const [token, setToken] = useToken();
+    const [loc, setLoc] = useGeoloc();
+    const [email, setEmail] = useUserEmail();
     const [toggle, setToggle] = useToggle();
     const navigate = useNavigate(); 
     function goToHome() {
@@ -58,6 +60,15 @@ export function HeaderPage(props) {
         localStorage.clear();
         navigate("/home");
     }
+
+    useEffect(() => {
+        if (loc == null) {
+            navigate("/");
+        }
+        if (token == null && email == null) {
+            navigate("/login");
+        }
+    },[])
 
     return toggle ?
 
