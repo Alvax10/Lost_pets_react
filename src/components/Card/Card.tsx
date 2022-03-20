@@ -17,7 +17,7 @@ export function CardComp(props) {
     const [toggle, setToggle] = useToggle();
 
     useEffect(() => {
-        if (geoloc == {lat: null, lng: null}) {
+        if (geoloc == {lat: null, lng: null} && token == null) {
             navigate("/");
         } else if (token == null) {
             navigate("/login");

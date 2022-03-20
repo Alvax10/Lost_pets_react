@@ -43,12 +43,14 @@ export function MyData() {
     }
 
     useEffect(() => {
+        if (loc == {lat: null, lng: null} && token == null) {
+            navigate("/");
+        }
         if (loc == {lat: null, lng: null}) {
             navigate("/");
-        } else if (token == null) {
+        }
+        if (token == null) {
             navigate("/login");
-        } else if (loc == {lat: null, lng: null} && token == null) {
-            navigate("/");
         }
     },[]);
 

@@ -38,12 +38,14 @@ export function ReportMascotComp(props) {
     }
 
     useEffect(() => {
+        if (geoloc == {lat: null, lng: null} && token == null) {
+            navigate("/");
+        }
         if (geoloc == {lat: null, lng: null}) {
             navigate("/");
-        } else if (token == null) {
+        }
+        if (token == null) {
             navigate("/login");
-        } else if (geoloc == {lat: null, lng: null} && token == null) {
-            navigate("/");
         }
     }, []);
 

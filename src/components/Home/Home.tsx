@@ -26,10 +26,7 @@ export function HomeComp() {
     useEffect(() => {
 
         if (loc == {lat: null, lng: null}) {
-            navigate("/");
-        } else if (token == null) {
-            navigate("/login");
-        } else if (loc == {lat: null, lng: null} && token == null) {
+            console.log("Estoy en el if de home");
             navigate("/");
         }
         setMascotsClose();

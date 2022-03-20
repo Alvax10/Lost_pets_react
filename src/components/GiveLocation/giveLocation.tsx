@@ -19,16 +19,14 @@ export function ExtractLocation() {
         if (userData && !email) {
             setEmail(userData["email"]);
         }
-        if (geoloc == {lat: null, lng: null}) {
-            navigate("/");
-        } else if (token == null) {
-            navigate("/login");
-        } else if (geoloc == {lat: null, lng: null} && token == null) {
-            navigate("/");
-        } else {
-            navigate("/home");
+        if (data) {
+            if (data["_geoloc"]) {
+                console.log("Ya hay loc: ", data["_geoloc"]);
+                setGeoloc({ lat: data["_geoloc"]["lat"], lng: data["_geoloc"]["lng"] });
+                navigate("/home");
+            }
         }
-        
+
     }, [token, geoloc]);
 
     
