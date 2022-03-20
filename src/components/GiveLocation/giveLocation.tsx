@@ -21,7 +21,7 @@ export function ExtractLocation() {
         }
         if (data) {
             if (data["_geoloc"]) {
-                console.log("Ya hay loc: ", data["_geoloc"]);
+                // console.log("Ya hay loc: ", data["_geoloc"]);
                 setGeoloc({ lat: data["_geoloc"]["lat"], lng: data["_geoloc"]["lng"] });
                 navigate("/home");
             }

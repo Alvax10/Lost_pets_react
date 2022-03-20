@@ -12,17 +12,8 @@ export const useToggle = () => useState(false);
 export function CardComp(props) {
     const navigate = useNavigate();
     const [token, setToken] = useToken();
-    const [geoloc, setGeoloc] = useUserEmail();
     const [userEmail, setUserEmail] = useUserEmail();
     const [toggle, setToggle] = useToggle();
-
-    useEffect(() => {
-        if (geoloc == {lat: null, lng: null} && token == null) {
-            navigate("/");
-        } else {
-            navigate("/");
-        }
-    },[]);
 
     async function sendEmail(e) {
         e.preventDefault();

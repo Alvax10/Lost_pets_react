@@ -31,18 +31,6 @@ export function EditCard(props) {
         });
     }
 
-    useEffect(() => {
-        if (loc == {lat: null, lng: null} && token == null) {
-            navigate("/");
-        }
-        if (loc == {lat: null, lng: null}) {
-            navigate("/");
-        }
-        if (token == null) {
-            navigate("/login");
-        }
-    },[]);
-
     async function editMascot(e) {
         e.preventDefault();
         await editMascotData(props.id, e.target.petname.value, img, geoloc, props.id, props.objectID, token);
