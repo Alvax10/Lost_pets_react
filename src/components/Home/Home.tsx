@@ -25,7 +25,7 @@ export function HomeComp() {
 
     useEffect(() => {
 
-        if (loc == {lat: null, lng: null}) {
+        if (loc == null) {
             console.log(loc)
             navigate("/");
         }
