@@ -26,7 +26,7 @@ export function HomeComp() {
     useEffect(() => {
 
         if (lat == null && lng == null) {
-            console.log(lat, lng);
+            // console.log(lat, lng);
             navigate("/");
 
         } else {
