@@ -24,7 +24,7 @@ export function MyMascotsReported(props) {
         if (loc == null) {
             navigate("/");
         }
-        if (token == null && email == null) {
+        if (token == null) {
             navigate("/login");
         }
         mascotasReportadas();

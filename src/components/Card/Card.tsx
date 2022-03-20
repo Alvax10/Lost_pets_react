@@ -20,7 +20,7 @@ export function CardComp(props) {
         if (geoloc == null) {
             navigate("/");
         }
-        if (token == null && userEmail == null) {
+        if (token == null) {
             navigate("/login");
         }
     },[]);

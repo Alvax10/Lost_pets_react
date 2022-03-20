@@ -46,7 +46,7 @@ export function MyData() {
         if (loc == null) {
             navigate("/");
         }
-        if (token == null && email == null) {
+        if (token == null) {
             navigate("/login");
         }
     },[]);

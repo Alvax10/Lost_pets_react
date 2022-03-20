@@ -24,6 +24,10 @@ export function HomeComp() {
     }
 
     useEffect(() => {
+
+        if (loc == null) {
+            navigate("/");
+        }
         setMascotsClose();
         return () => {
             // console.log("Unmouting se paró el proceso de useEffect de mascotasCerca");
