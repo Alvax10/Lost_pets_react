@@ -29,7 +29,7 @@ export function HomeComp() {
             navigate("/");
         } else if (token == null) {
             navigate("/login");
-        } else {
+        } else if (loc == {lat: null, lng: null} && token == null) {
             navigate("/");
         }
         setMascotsClose();

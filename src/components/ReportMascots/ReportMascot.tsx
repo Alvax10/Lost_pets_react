@@ -42,7 +42,7 @@ export function ReportMascotComp(props) {
             navigate("/");
         } else if (token == null) {
             navigate("/login");
-        } else {
+        } else if (geoloc == {lat: null, lng: null} && token == null) {
             navigate("/");
         }
     }, []);
