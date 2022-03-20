@@ -25,7 +25,7 @@ export function HomeComp() {
 
     useEffect(() => {
 
-        if (loc == null) {
+        if (!loc) {
             console.log(loc)
             navigate("/");
         }
