@@ -25,11 +25,13 @@ export function HomeComp() {
 
     useEffect(() => {
 
-        if (!loc) {
-            console.log(loc)
+        if (lat == null && lng == null) {
+            console.log(lat, lng);
             navigate("/");
+
+        } else {
+            setMascotsClose();
         }
-        setMascotsClose();
         return () => {
             // console.log("Unmouting se paró el proceso de useEffect de mascotasCerca");
             setData(null);

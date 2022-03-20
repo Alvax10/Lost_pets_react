@@ -8,7 +8,7 @@ import { PinkButton } from "../../UI/buttons/PinkButton";
 import { GrayButton } from "../../UI/buttons/GrayButton";
 import { reportMascot } from "../../lib/report-mascot-api";
 import { InputLabel } from "../../UI/InputLabel/InputLabel";
-import { useGeoloc, useImageDataURL, useToken, useUserEmail } from "../../hooks";
+import { useImageDataURL, useToken, useUserEmail } from "../../hooks";
 
 export function ReportMascotComp(props) {
 
@@ -16,7 +16,6 @@ export function ReportMascotComp(props) {
     const [email, setEmail] = useUserEmail();
     const [token, setToken] = useToken();
     const [img, setImg] = useImageDataURL();
-    const [geoloc, setGeoloc] = useGeoloc()
     const [loc, setLoc] = useState({
         name: null,
         lat: null,
@@ -38,12 +37,7 @@ export function ReportMascotComp(props) {
     }
 
     useEffect(() => {
-        if (geoloc == {lat: null, lng: null} && token == null) {
-            navigate("/");
-        }
-        if (geoloc == {lat: null, lng: null}) {
-            navigate("/");
-        }
+        
         if (token == null) {
             navigate("/login");
         }

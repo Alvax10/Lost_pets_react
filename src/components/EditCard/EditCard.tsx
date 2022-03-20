@@ -7,15 +7,13 @@ import closeButton from "../../assets/Vector.png";
 import lapizEdit from "../../assets/lapiz-edit.png";
 import { PinkButton } from "../../UI/buttons/PinkButton";
 import { InputLabel } from "../../UI/InputLabel/InputLabel";
-import { useImageDataURL, useToken, useGeoloc, useUserEmail } from "../../hooks";
+import { useImageDataURL, useToken } from "../../hooks";
 import { editMascotData, eliminateMascot } from "../../lib/despublicar-mascota-api";
 
 export function EditCard(props) {
     const navigate = useNavigate();
     const [token, setToken] = useToken();
     const [toggle, setToggle] = useState(false);
-    const [loc, setLoc] = useGeoloc();
-    const [email, setEmail] = useUserEmail();
 
     const [img, setImg] = useImageDataURL();
     const [geoloc, setGeoloc] = useState({

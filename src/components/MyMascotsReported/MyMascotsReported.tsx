@@ -21,16 +21,13 @@ export function MyMascotsReported(props) {
     }
 
     useEffect(() => {
-        if (loc == {lat: null, lng: null} && token == null) {
-            navigate("/");
-        }
-        if (loc == {lat: null, lng: null}) {
-            navigate("/");
-        }
+
         if (token == null) {
             navigate("/login");
+            
+        } else {
+            mascotasReportadas();
         }
-        mascotasReportadas();
         return () => {
             // console.log("se paró el proceso de useEffect de misMascotas");
             setData(null);
