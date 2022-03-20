@@ -25,7 +25,11 @@ export function HomeComp() {
 
     useEffect(() => {
 
-        if (loc == null) {
+        if (loc == {lat: null, lng: null}) {
+            navigate("/");
+        } else if (token == null) {
+            navigate("/login");
+        } else {
             navigate("/");
         }
         setMascotsClose();
