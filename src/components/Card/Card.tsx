@@ -19,8 +19,6 @@ export function CardComp(props) {
     useEffect(() => {
         if (geoloc == {lat: null, lng: null} && token == null) {
             navigate("/");
-        } else if (token == null) {
-            navigate("/login");
         } else {
             navigate("/");
         }
