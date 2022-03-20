@@ -1,19 +1,29 @@
 import css from "./Card.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import closeButton from "../../assets/Vector.png";
 import { InputLabel } from "../../UI/InputLabel/InputLabel";
 import { PinkButton } from "../../UI/buttons/PinkButton";
 import { sendEmailto } from "../../lib/send-mail-api";
 import { useNavigate } from "react-router-dom";
-import { useUserEmail, useToken } from "../../hooks";
+import { useUserEmail, useToken, useGeoloc } from "../../hooks";
 
 export const useToggle = () => useState(false);
 
 export function CardComp(props) {
     const navigate = useNavigate();
     const [token, setToken] = useToken();
+    const [geoloc, setGeoloc] = useUserEmail();
     const [userEmail, setUserEmail] = useUserEmail();
     const [toggle, setToggle] = useToggle();
+
+    useEffect(() => {
+        if (geoloc == null) {
+            navigate("/");
+        }
+        if (token == null && userEmail == null) {
+            navigate("/login");
+        }
+    },[]);
 
     async function sendEmail(e) {
         e.preventDefault();

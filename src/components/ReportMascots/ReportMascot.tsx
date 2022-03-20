@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import css from "./ReportMascot.css";
 import { MapboxComp } from "../Mapbox/Mapbox";
 import { useNavigate } from "react-router-dom";
@@ -35,6 +35,15 @@ export function ReportMascotComp(props) {
         await alert("Mascota reportada correctamente!");
         await navigate("/home");
     }
+
+    useEffect(() => {
+        if (loc == null) {
+            navigate("/");
+        }
+        if (token == null && email == null) {
+            navigate("/login");
+        }
+    }, []);
 
     return <div className={css.container}>
         <CustomTitle> Reportar mascota perdida </CustomTitle>

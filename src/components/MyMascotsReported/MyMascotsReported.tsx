@@ -2,7 +2,7 @@ import css from "./MyMascotsReported.css";
 import { useNavigate } from "react-router-dom";
 import { EditCard } from "../EditCard/EditCard";
 import React, { useEffect, useState } from "react";
-import { useUserEmail, useToken } from "../../hooks";
+import { useUserEmail, useToken, useGeoloc } from "../../hooks";
 import { TextInfo } from "../../UI/Texto info/TextoInfo";
 import { PinkButton } from "../../UI/buttons/PinkButton";
 import { misMascotasReportadas } from "../../lib/mis-mascotas-reportadas-api";
@@ -10,6 +10,7 @@ import { misMascotasReportadas } from "../../lib/mis-mascotas-reportadas-api";
 export function MyMascotsReported(props) {
 
     const navigate = useNavigate();
+    const [loc, setLoc] = useGeoloc();
     const [token, setToken] = useToken();
     const [email, setEmail] = useUserEmail();
     const [data, setData] = useState(null);
@@ -20,7 +21,12 @@ export function MyMascotsReported(props) {
     }
 
     useEffect(() => {
-
+        if (loc == null) {
+            navigate("/");
+        }
+        if (token == null && email == null) {
+            navigate("/login");
+        }
         mascotasReportadas();
         return () => {
             // console.log("se paró el proceso de useEffect de misMascotas");

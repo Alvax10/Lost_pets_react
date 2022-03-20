@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import css from "./MyData.css";
 import { useNavigate } from "react-router-dom";
-import { useToken, useUserEmail } from "../../hooks";
+import { useToken, useUserEmail, useGeoloc } from "../../hooks";
 import { CustomTitle } from "../../UI/Title/Title";
 import { PinkButton } from "../../UI/buttons/PinkButton";
 import { InputLabel } from "../../UI/InputLabel/InputLabel";
@@ -10,6 +10,7 @@ import { signUpUser, modifyUserInfo } from "../../lib/registrarse-api";
 export function MyData() {
 
     const navigate = useNavigate();
+    const [loc, setLoc] = useGeoloc();
     const [token, setToken] = useToken();
     const [email, setEmail] = useUserEmail();
 
@@ -40,6 +41,15 @@ export function MyData() {
         await signUpUser(email, password);
         await navigate("/login");
     }
+
+    useEffect(() => {
+        if (loc == null) {
+            navigate("/");
+        }
+        if (token == null && email == null) {
+            navigate("/login");
+        }
+    },[]);
 
     return (token ? 
         <form onSubmit={modifyUserData} className={css.container}>
