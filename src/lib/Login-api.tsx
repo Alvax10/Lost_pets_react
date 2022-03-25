@@ -11,7 +11,7 @@ export async function checkEmail(email) {
     });
 
     const data = await res.json();
-    return data;
+    if (data) { return true } else { return false };
 }
 
 // obtiene un token
