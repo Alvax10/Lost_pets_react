@@ -41,12 +41,6 @@ export function MyData() {
         await navigate("/login");
     }
 
-    useEffect(() => {
-        if (token == null) {
-            navigate("/login");
-        }
-    },[]);
-
     return (token ? 
         <form onSubmit={modifyUserData} className={css.container}>
             <CustomTitle> Mis Datos / Registrarse </CustomTitle>
