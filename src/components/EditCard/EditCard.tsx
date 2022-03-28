@@ -28,8 +28,9 @@ export function EditCard(props) {
 
     async function editMascot(e) {
         e.preventDefault();
+        console.log(e.target.petname.value);
 
-        await editMascotData(token, props.id, props.objectID, e.target.name.value, img, geoloc);
+        await editMascotData(token, props.id, props.objectID, e.target.petname.value, img, geoloc);
         await alert("Mascota editada correctamente!");
         await navigate("/home");
     }
