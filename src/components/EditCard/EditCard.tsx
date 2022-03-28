@@ -23,10 +23,10 @@ export function EditCard(props) {
     });
 
     const location = (name, lat, lng) => {
-    setGeoloc({
-        name: name,
-        lat: lat,
-        lng: lng,
+        setGeoloc({
+            name: name,
+            lat: lat,
+            lng: lng,
         });
     }
 
