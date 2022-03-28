@@ -32,6 +32,10 @@ export function EditCard(props) {
     async function editMascot(e) {
         e.preventDefault();
         const petName = e.target.name.value;
+        if (geoloc == { name: null, lat: null, lng: null }) {
+            setGeoloc(null);
+            console.log("Geoloc es igual a null");
+        }
 
         await editMascotData(token, props.id, props.objectID, petName, img, geoloc);
         await alert("Mascota editada correctamente!");
