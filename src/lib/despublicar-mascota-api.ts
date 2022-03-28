@@ -22,7 +22,7 @@ export async function editMascotData(token, ImageDataURL, mascotId, mascotLocati
             "Content-type": "application/json",
             'Authorization': `bearer ${token}`,
         },
-        body: JSON.stringify({ mascotId: mascotId, objectID: objectID, petName: petName, ImageDataURL: ImageDataURL, mascotLocation: mascotLocation }),
+        body: JSON.stringify({ ImageDataURL: ImageDataURL, mascotId: mascotId, mascotLocation: mascotLocation, objectID: objectID, petName: petName }),
     });
     await console.log("Se actualizó la info! :D");
     return mascotaEditada;
