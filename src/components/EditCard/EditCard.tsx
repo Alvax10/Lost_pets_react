@@ -18,24 +18,18 @@ export function EditCard(props) {
     const [img, setImg] = useImageDataURL();
     const [geoloc, setGeoloc] = useState(null);
 
-    if (props.geoloc) {
-        const location = (name, lat, lng) => {
-            setGeoloc({
-                name: name,
-                lat: lat,
-                lng: lng,
-            });
-        }
-
-    } else {
-        setGeoloc(null);
+    const location = (name, lat, lng) => {
+    setGeoloc({
+        name: name,
+        lat: lat,
+        lng: lng,
+        });
     }
 
     async function editMascot(e) {
         e.preventDefault();
-        const petName = e.target.name.value;
 
-        await editMascotData(token, props.id, props.objectID, petName, img, geoloc);
+        await editMascotData(token, props.id, props.objectID, e.target.name.value, img, geoloc);
         await alert("Mascota editada correctamente!");
         await navigate("/home");
     }
