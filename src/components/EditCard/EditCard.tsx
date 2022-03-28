@@ -16,11 +16,7 @@ export function EditCard(props) {
     const [toggle, setToggle] = useState(false);
 
     const [img, setImg] = useImageDataURL();
-    const [geoloc, setGeoloc] = useState({
-        name: null,
-        lat: null,
-        lng: null,
-    });
+    const [geoloc, setGeoloc] = useState(null);
     const location = (name, lat, lng) => {
         setGeoloc({
             name: name,
@@ -32,14 +28,10 @@ export function EditCard(props) {
     async function editMascot(e) {
         e.preventDefault();
         const petName = e.target.name.value;
-        
-        if (geoloc == { name: null, lat: null, lng: null }) {
-            setGeoloc(null);
-            console.log("Geoloc es igual a null");
-            await editMascotData(token, props.id, props.objectID, petName, img, geoloc);
-            await alert("Mascota editada correctamente!");
-            await navigate("/home");
-        }
+
+        await editMascotData(token, props.id, props.objectID, petName, img, geoloc);
+        await alert("Mascota editada correctamente!");
+        await navigate("/home");
     }
 
     async function despublicarMascota(e) {
