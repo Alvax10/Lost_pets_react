@@ -14,7 +14,7 @@ export async function eliminateMascot(mascotId, objectID, token) {
     return true;
 }
 
-export async function editMascotData(token, ImageDataURL, mascotId, mascotLocation, objectID, petName) {
+export async function editMascotData(token, mascotId, objectID, petName, ImageDataURL, mascotLocation) {
 
     const mascotaEditada = await fetch(API_BASE_URL + "/update-mascot-info", {
         method: 'PATCH',
@@ -22,7 +22,7 @@ export async function editMascotData(token, ImageDataURL, mascotId, mascotLocati
             "Content-type": "application/json",
             'Authorization': `bearer ${token}`,
         },
-        body: JSON.stringify({ ImageDataURL: ImageDataURL, mascotId: mascotId, mascotLocation: mascotLocation, objectID: objectID, petName: petName }),
+        body: JSON.stringify({ mascotId: mascotId, objectID: objectID, petName: petName, ImageDataURL: ImageDataURL, mascotLocation: mascotLocation }),
     });
     await console.log("Se actualizó la info! :D");
     return mascotaEditada;
