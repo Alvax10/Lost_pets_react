@@ -16,7 +16,11 @@ export function EditCard(props) {
     const [toggle, setToggle] = useState(false);
 
     const [img, setImg] = useImageDataURL();
-    const [geoloc, setGeoloc] = useState(null);
+    const [geoloc, setGeoloc] = useState({
+        name: null,
+        lat: null,
+        lng: null,
+    });
 
     const location = (name, lat, lng) => {
     setGeoloc({
@@ -28,7 +32,7 @@ export function EditCard(props) {
 
     async function editMascot(e) {
         e.preventDefault();
-        console.log(e.target.petname.value);
+        console.log(geoloc);
 
         await editMascotData(token, props.id, props.objectID, e.target.petname.value, img, geoloc);
         await alert("Mascota editada correctamente!");
