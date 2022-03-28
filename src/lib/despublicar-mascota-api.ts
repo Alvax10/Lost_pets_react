@@ -16,6 +16,15 @@ export async function eliminateMascot(mascotId, objectID, token) {
 
 export async function editMascotData(token, mascotId, objectID, petName, ImageDataURL, mascotLocation) {
 
+    console.log({
+        token: token,
+        mascotId: mascotId,
+        objectID: objectID,
+        petName: petName,
+        ImageDataURL: ImageDataURL,
+        mascotLocation: mascotLocation
+    });
+
     const mascotaEditada = await fetch(API_BASE_URL + "/update-mascot-info", {
         method: 'PATCH',
         headers: {
