@@ -3,7 +3,6 @@ import React, { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import { useImageDataURL } from "../../hooks";
 import logoHeader from "../../assets/logo-pata.png";
-import { GreenButton } from "../../UI/buttons/GreenButton";
 
 export function MyDropZone(props) {
 

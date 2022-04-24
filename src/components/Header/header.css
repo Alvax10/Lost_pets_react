@@ -9,11 +9,15 @@
 }
 
 .logoMenu {
+    width: 54px;
+    height: 33px;
     cursor: pointer;
     padding-left: 25px;
 }
 
 .burgerMenu {
+    width: 40px;
+    height: 34px;
     cursor: pointer;
     padding-right: 25px;
 }

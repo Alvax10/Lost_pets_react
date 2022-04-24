@@ -65,8 +65,8 @@ export function HeaderPage(props) {
     :
         <div>
             <header className={css.header}> 
-                <img className={css.logoMenu} onClick={goToHome} src={logoHeader} />
-                <img onClick={() => setToggle(true)} className={css.burgerMenu} src={burgerMenu} />
+                <img alt="Logo" className={css.logoMenu} onClick={goToHome} src={logoHeader} />
+                <img alt="Burger menu" onClick={() => setToggle(true)} className={css.burgerMenu} src={burgerMenu} />
             </header>
             <Outlet></Outlet>
         </div>
