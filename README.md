@@ -7,4 +7,4 @@ https://dwf-m8-fe7d6.firebaseapp.com/
 
 For this `web app` i used the `React` framework and used the backend of my past project: `"Lost_pets-webapp"`.
 
-It was made with the same purpose of my past project, but this time in `React`
+It was made with the same purpose of my past project, but this time in `React`.
