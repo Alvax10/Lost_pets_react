@@ -1,11 +1,11 @@
-import css from "./MyMascotsReported.css";
-import { useNavigate } from "react-router-dom";
-import { EditCard } from "../EditCard/EditCard";
-import React, { useEffect, useState } from "react";
+import { misMascotasReportadas } from "../../lib/mis-mascotas-reportadas-api";
 import { useUserEmail, useToken, useGeoloc } from "../../hooks";
 import { TextInfo } from "../../UI/Texto info/TextoInfo";
 import { PinkButton } from "../../UI/buttons/PinkButton";
-import { misMascotasReportadas } from "../../lib/mis-mascotas-reportadas-api";
+import React, { useEffect, useState } from "react";
+import { EditCard } from "../EditCard/EditCard";
+import { useNavigate } from "react-router-dom";
+import css from "./MyMascotsReported.css";
 
 export function MyMascotsReported(props) {
 
@@ -38,12 +38,15 @@ export function MyMascotsReported(props) {
         return Math.ceil(Math.random() * (max - min) + min);
     }
 
-    return (data ? <div className={css.container}>
+    return ( data ? <div className={css["pre-container"]}>
+
             <h1 className={css.title}> Mis Mascotas reportadas </h1>
-            { data.map((m) => <EditCard  key={randomBetween(1,1000)} id={m["id"]} objectID={m["objectID"]} src={m["ImageDataURL"]} locName={m["_geoloc"]["name"]} petName={m["petName"]}></EditCard>)}
+            <div className={css.container}>
+                { data.map((m) => <EditCard  key={randomBetween(1,1000)} id={m["id"]} objectID={m["objectID"]} src={m["ImageDataURL"]} locName={m["_geoloc"]["name"]} petName={m["petName"]}></EditCard>)}
+            </div>
         </div>
         :
-        <div className={css.container}>
+        <div className={css["container-dos"]}>
             <TextInfo> No tienes mascotas reportadas </TextInfo>
             <PinkButton onClick={() => navigate("/reportar-mascota")}> Reportar Mascota </PinkButton>
         </div>
